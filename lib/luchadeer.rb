@@ -1,5 +1,2 @@
-require "luchadeer/version"
-
-module Luchadeer
-  # Your code goes here...
-end
+require 'luchadeer/version'
+require 'luchadeer/client'
