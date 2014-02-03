@@ -1,7 +1,7 @@
 module Luchadeer
   class Client
     attr_accessor :api_key
-    API_BASE_URL = 'http://www.giantbomb.com/api'
+    GIANT_BOMB = 'http://www.giantbomb.com/api'
 
     def initialize(opts = {})
       opts.each do |key, value|
@@ -26,7 +26,7 @@ module Luchadeer
   private
 
     def connection
-      @_connection ||= Faraday.new(API_BASE_URL, connection_options)
+      @_connection ||= Faraday.new(GIANT_BOMB, connection_options)
     end
 
     def connection_options
