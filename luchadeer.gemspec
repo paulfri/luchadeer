@@ -4,22 +4,23 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'luchadeer/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "luchadeer"
+  spec.name          = 'luchadeer'
   spec.version       = Luchadeer::VERSION
-  spec.authors       = ["Paul Friedman"]
-  spec.email         = ["paulrfri@gmail.com"]
+  spec.authors       = ['Paul Friedman']
+  spec.email         = ['paulrfri@gmail.com']
   spec.summary       = %q{A smart Giant Bomb API client library.}
   # spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
-  spec.license       = "MIT"
+  spec.homepage      = 'https://github.com/paulfri/luchadeer'
+  spec.license       = 'MIT'
 
   spec.files         = `git ls-files`.split($/)
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
-  spec.require_paths = ["lib"]
+  spec.require_paths = ['lib']
 
   spec.add_dependency 'faraday'
 
-  spec.add_development_dependency "bundler", "~> 1.5"
-  spec.add_development_dependency "rake"
+  spec.add_development_dependency 'bundler', '~> 1.5'
+  spec.add_development_dependency 'rake'
+  spec.add_development_dependency 'rspec'
 end
