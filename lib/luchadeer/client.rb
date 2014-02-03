@@ -16,7 +16,7 @@ module Luchadeer
     end
 
     def api_key?
-      not api_key.nil?
+      not (api_key.nil? || api_key == '')
     end
 
     def get(path, params = {})
