@@ -6,11 +6,9 @@ module Luchadeer
     class ParseAPIError < Faraday::Response::Middleware
 
       def on_complete(response)
-        # raise "#{response.body.inspect}"
-        # raise "status #{response.body['status_code']} // error #{response.body['error']}"
-        if response.body['status_code'] != Luchadeer::Error::Code::OK
-          raise Luchadeer::Error.new(response.body[:error])
-        end
+        klass = Luchadeer::Error.api_errors[response.body[:status_code]]
+
+        fail(klass.new(response.body[:error], response.body[:status_code])) if klass
       end
 
     end

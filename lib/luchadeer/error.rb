@@ -7,10 +7,11 @@ module Luchadeer
       INVALID_API_KEY        = 100
       OBJECT_NOT_FOUND       = 101
       URL_FORMAT_ERROR       = 102
-      JSON_CALLBACK_REQUIRED = 103
+      JSON_CALLBACK_REQUIRED = 103 # should be only apply to 'jsonp' format
       FILTER_ERROR           = 104
       SUBSCRIBER_ONLY        = 105
     end
+    include Code
 
     # Used for HTTP status codes
     def self.http_errors
@@ -23,12 +24,19 @@ module Luchadeer
         500 => Luchadeer::Error::InternalServerError,
         502 => Luchadeer::Error::BadGateway,
         503 => Luchadeer::Error::ServiceUnavailable,
-        504 => Luchadeer::Error::GatewayTimeout,
+        504 => Luchadeer::Error::GatewayTimeout
       }
     end
 
-    def self.from_response(response)
-      new('', response.status)
+    def self.api_errors
+      {
+        INVALID_API_KEY => Luchadeer::Error::InvalidAPIKey,
+        OBJECT_NOT_FOUND => Luchadeer::Error::ObjectNotFound,
+        URL_FORMAT_ERROR => Luchadeer::Error::URLFormatError,
+        JSON_CALLBACK_REQUIRED => Luchadeer::Error::JSONCallbackRequired,
+        FILTER_ERROR => Luchadeer::Error::FilterError,
+        SUBSCRIBER_ONLY => Luchadeer::Error::SubscriberOnly
+      }
     end
 
     def initialize(message = '', status = nil)
@@ -37,6 +45,13 @@ module Luchadeer
     end
 
   private
+
+    class InvalidAPIKey < Luchadeer::Error; end
+    class ObjectNotFound < Luchadeer::Error; end
+    class URLFormatError < Luchadeer::Error; end
+    class JSONCallbackRequired < Luchadeer::Error; end
+    class FilterError < Luchadeer::Error; end
+    class SubscriberOnly < Luchadeer::Error; end
 
     class BadRequest < Luchadeer::Error; end
     class Unauthorized < Luchadeer::Error; end
