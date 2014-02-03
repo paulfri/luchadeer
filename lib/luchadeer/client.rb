@@ -1,6 +1,7 @@
 module Luchadeer
   class Client
     attr_accessor :api_key
+    API_BASE_URL = 'http://www.giantbomb.com/api'
 
     def initialize(opts = {})
       opts.each do |key, value|
@@ -11,11 +12,49 @@ module Luchadeer
     end
 
     def user_agent
-      @_user_agent ||= "Luchadeer #{Luchadeer::Version}"
+      "Luchadeer #{Luchadeer::VERSION}"
     end
 
     def api_key?
       not api_key.nil?
     end
+
+    def get(path, params = {})
+      request(:get, path, params)
+    end
+
+  private
+
+    def connection
+      @_connection ||= Faraday.new(API_BASE_URL, connection_options)
+    end
+
+    def connection_options
+      {
+        builder: middleware,
+        headers: {
+          accept: 'application/json',
+          user_agent: user_agent,
+        }
+      }
+    end
+
+    def middleware
+      Faraday::RackBuilder.new do |builder|
+        builder.response :parse_json
+        builder.adapter  :net_http
+      end
+    end
+
+    def request(method, path, params = {})
+      connection.send(method.to_sym, path, params.merge(default_params))
+    rescue => e
+      raise Luchadeer::Error.new(e)
+    end
+
+    def default_params
+      { format: 'json', api_key: api_key }
+    end
+
   end
 end
