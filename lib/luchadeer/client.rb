@@ -41,15 +41,19 @@ module Luchadeer
 
     def middleware
       Faraday::RackBuilder.new do |builder|
+        # order is important
+        builder.response :parse_api_error
         builder.response :parse_json
+        builder.response :parse_http_error
+
         builder.adapter  :net_http
       end
     end
 
     def request(method, path, params = {})
       connection.send(method.to_sym, path, params.merge(default_params))
-    rescue => e
-      raise Luchadeer::Error.new(e)
+    # rescue => e
+    #   raise Luchadeer::Error.new(e)
     end
 
     def default_params
