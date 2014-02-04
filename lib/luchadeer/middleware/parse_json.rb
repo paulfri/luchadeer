@@ -13,7 +13,7 @@ module Luchadeer
         when WHITESPACE_REGEX, nil
           nil
         else
-          JSON.parse(body, :symbolize_names => true)
+          JSON.parse(body, symbolize_names: true)
         end
       end
 
