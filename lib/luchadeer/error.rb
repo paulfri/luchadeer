@@ -1,8 +1,7 @@
 module Luchadeer
   class Error < StandardError
 
-    # Used for bespoke status codes returned in the response body
-    module Code
+    module Codes
       OK                     = 1
       INVALID_API_KEY        = 100
       OBJECT_NOT_FOUND       = 101
@@ -11,37 +10,32 @@ module Luchadeer
       FILTER_ERROR           = 104
       SUBSCRIBER_ONLY        = 105
     end
-    include Code
+
+    # Used for bespoke status codes returned in the response body
+    def self.api_errors
+      {
+        Codes::INVALID_API_KEY => Luchadeer::Error::InvalidAPIKey,
+        Codes::OBJECT_NOT_FOUND => Luchadeer::Error::ObjectNotFound,
+        Codes::URL_FORMAT_ERROR => Luchadeer::Error::URLFormatError,
+        Codes::JSON_CALLBACK_REQUIRED => Luchadeer::Error::JSONCallbackRequired,
+        Codes::FILTER_ERROR => Luchadeer::Error::FilterError,
+        Codes::SUBSCRIBER_ONLY => Luchadeer::Error::SubscriberOnly
+      }
+    end
 
     # Used for HTTP status codes
     def self.http_errors
       {
         400 => Luchadeer::Error::BadRequest,
-        401 => Luchadeer::Error::Unauthorized,
-        403 => Luchadeer::Error::Forbidden,
+        401 => Luchadeer::Error::Unauthorized,        # unconfirmed
+        403 => Luchadeer::Error::Forbidden,           # unconfirmed
         404 => Luchadeer::Error::NotFound,
-        408 => Luchadeer::Error::RequestTimeout,
+        408 => Luchadeer::Error::RequestTimeout,      # unconfirmed
         500 => Luchadeer::Error::InternalServerError,
-        502 => Luchadeer::Error::BadGateway,
-        503 => Luchadeer::Error::ServiceUnavailable,
-        504 => Luchadeer::Error::GatewayTimeout
+        502 => Luchadeer::Error::BadGateway,          # unconfirmed
+        503 => Luchadeer::Error::ServiceUnavailable,  # unconfirmed
+        504 => Luchadeer::Error::GatewayTimeout       # unconfirmed
       }
-    end
-
-    def self.api_errors
-      {
-        INVALID_API_KEY => Luchadeer::Error::InvalidAPIKey,
-        OBJECT_NOT_FOUND => Luchadeer::Error::ObjectNotFound,
-        URL_FORMAT_ERROR => Luchadeer::Error::URLFormatError,
-        JSON_CALLBACK_REQUIRED => Luchadeer::Error::JSONCallbackRequired,
-        FILTER_ERROR => Luchadeer::Error::FilterError,
-        SUBSCRIBER_ONLY => Luchadeer::Error::SubscriberOnly
-      }
-    end
-
-    def initialize(message = '', status = nil)
-      super(message)
-      @status = status
     end
 
   private

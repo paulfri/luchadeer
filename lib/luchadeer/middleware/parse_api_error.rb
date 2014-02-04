@@ -8,7 +8,7 @@ module Luchadeer
       def on_complete(response)
         klass = Luchadeer::Error.api_errors[response.body[:status_code]]
 
-        fail(klass.new(response.body[:error], response.body[:status_code])) if klass
+        fail(klass.new(response.body[:error])) if klass
       end
 
     end
