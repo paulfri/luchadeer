@@ -1,5 +1,11 @@
+require 'luchadeer/middleware/parse_json'
+require 'luchadeer/middleware/parse_http_error'
+require 'luchadeer/middleware/parse_api_error'
+
 module Luchadeer
   class Client
+    include Luchadeer::API
+
     attr_accessor :api_key
     GIANT_BOMB = 'http://www.giantbomb.com/api'
 

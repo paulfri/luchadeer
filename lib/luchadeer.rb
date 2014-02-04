@@ -1,6 +1,6 @@
 require 'luchadeer/version'
+
+require 'luchadeer/api'
 require 'luchadeer/client'
 require 'luchadeer/error'
-require 'luchadeer/middleware/parse_json'
-require 'luchadeer/middleware/parse_http_error'
-require 'luchadeer/middleware/parse_api_error'
+require 'luchadeer/game'
