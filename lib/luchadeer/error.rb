@@ -47,6 +47,8 @@ module Luchadeer
     class FilterError < Luchadeer::Error; end
     class SubscriberOnly < Luchadeer::Error; end
 
+    class RedirectLimitReached < Luchadeer::Error; end
+
     class BadRequest < Luchadeer::Error; end
     class Unauthorized < Luchadeer::Error; end
     class Forbidden < Luchadeer::Error; end

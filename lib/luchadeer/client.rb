@@ -1,3 +1,5 @@
+require 'faraday'
+require 'luchadeer/middleware/follow_redirects'
 require 'luchadeer/middleware/parse_json'
 require 'luchadeer/middleware/parse_http_error'
 require 'luchadeer/middleware/parse_api_error'
@@ -53,6 +55,7 @@ module Luchadeer
         builder.response :parse_api_error
         builder.response :parse_json
         builder.response :parse_http_error
+        builder.response :follow_redirects
 
         builder.adapter  :net_http
       end

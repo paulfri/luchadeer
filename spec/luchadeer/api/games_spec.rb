@@ -8,7 +8,7 @@ describe Luchadeer::API::Games do
     let(:game_id) { 1 }
 
     it 'caches responses' do
-      stub_request(:get, %r(#{Luchadeer::Client::GIANT_BOMB}/game/3030-#{game_id}/))
+      stub_request(:get, %r(#{Luchadeer::Client::GIANT_BOMB}/game/3030-#{game_id}))
         .to_return(body: "{ \"results\": { \"cache\": true } }")
 
       client.game("#{game_id}")
