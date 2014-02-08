@@ -14,11 +14,11 @@ module Luchadeer
     # Used for bespoke status codes returned in the response body
     def self.api_errors
       {
-        Codes::INVALID_API_KEY        => Luchadeer::Error::InvalidAPIKey,
-        Codes::OBJECT_NOT_FOUND       => Luchadeer::Error::NotFound,
-        Codes::URL_FORMAT_ERROR       => Luchadeer::Error::URLFormatError,
-        Codes::FILTER_ERROR           => Luchadeer::Error::FilterError,
-        Codes::SUBSCRIBER_ONLY        => Luchadeer::Error::SubscriberOnly
+        Codes::INVALID_API_KEY  => Luchadeer::Error::InvalidAPIKey,
+        Codes::OBJECT_NOT_FOUND => Luchadeer::Error::NotFound,
+        Codes::URL_FORMAT_ERROR => Luchadeer::Error::URLFormatError,
+        Codes::FILTER_ERROR     => Luchadeer::Error::FilterError,
+        Codes::SUBSCRIBER_ONLY  => Luchadeer::Error::SubscriberOnly
       }
     end
 

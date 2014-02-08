@@ -9,7 +9,7 @@ describe Luchadeer::API::Games do
 
     it 'requests the right url' do
       stub = stub_request(:get, %r(#{Luchadeer::Client::GIANT_BOMB}/game/3030-#{game_id}))
-        .to_return(body: "{ }")
+        .to_return(body: '{ }')
       client.game("#{game_id}")
 
       expect(stub).to have_been_requested
