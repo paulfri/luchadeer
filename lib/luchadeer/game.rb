@@ -1,7 +1,7 @@
-require 'hashie'
+require 'luchadeer/resource'
 
 module Luchadeer
-  class Game < Hashie::Mash
+  class Game < Resource
 
     class << self
       def find(id, refresh = false)
