@@ -3,8 +3,6 @@ require 'luchadeer'
 describe Luchadeer::Resource do
   let(:hash) { { first_name: 'Chie', last_name: 'Satonaka', age: 16 } }
   let(:resource) { described_class.new(hash) }
-  let(:nested) { hash.merge(nested: hash) }
-  let(:nested_resource) { described_class.new(nested) }
 
   describe '#initialize' do
     it 'generates ostruct accessors for its keys' do
@@ -17,8 +15,22 @@ describe Luchadeer::Resource do
       expect(resource.foo).to be_nil
     end
 
-    it 'recursively generates new objects for nested hashes' do
-      expect(nested_resource.nested).to be_a Luchadeer::Resource
+    context 'with nested hashes as values' do
+      let(:nested) { hash.merge(nested: hash) }
+      let(:nested_resource) { described_class.new(nested) }
+
+      it 'recursively generates resource objects for nested hashes' do
+        expect(nested_resource.nested).to be_a Luchadeer::Resource
+      end
+    end
+
+    context 'with arrays as values' do
+      let(:arrayed) { hash.merge(arrayed: [ { test: "array" } ]) }
+      let(:arrayed_resource) { described_class.new(arrayed) }
+
+      it 'recursively generates resource objects inside nested arrays' do
+        expect(arrayed_resource.arrayed[0]).to be_a Luchadeer::Resource
+      end
     end
   end
 
