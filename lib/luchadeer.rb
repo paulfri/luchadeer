@@ -4,6 +4,8 @@ require 'luchadeer/api'
 require 'luchadeer/client'
 require 'luchadeer/error'
 require 'luchadeer/game'
+require 'luchadeer/search'
+require 'luchadeer/franchise'
 
 module Luchadeer
   class << self

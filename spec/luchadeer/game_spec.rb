@@ -3,6 +3,10 @@ require 'webmock'
 
 describe Luchadeer::Game do
 
+  it 'is a resource' do
+    expect(described_class.new).to be_a Luchadeer::Resource
+  end
+
   describe '.find' do
     let(:client) { Luchadeer::Client.new }
 

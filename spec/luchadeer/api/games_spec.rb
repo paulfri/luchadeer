@@ -6,18 +6,17 @@ describe Luchadeer::API::Games do
 
   describe '#games' do
     let(:game_id) { 1 }
+    let(:game_path) { %r(#{Luchadeer::Client::GIANT_BOMB}/game/3030-#{game_id}) }
 
     it 'requests the right url' do
-      stub = stub_request(:get, %r(#{Luchadeer::Client::GIANT_BOMB}/game/3030-#{game_id}))
-        .to_return(body: '{ }')
+      stub = stub_request(:get, game_path).to_return(body: '{ }')
       client.game("#{game_id}")
 
       expect(stub).to have_been_requested
     end
 
     it 'caches responses' do
-      stub_request(:get, %r(#{Luchadeer::Client::GIANT_BOMB}/game/3030-#{game_id}))
-        .to_return(body: "{ \"results\": { \"cache\": true } }")
+      stub_request(:get, game_path).to_return(body: '{ "results": { "cache": true } }')
 
       client.game("#{game_id}")
       expect(client.cache["game-#{game_id}"]).to eq cache: true
