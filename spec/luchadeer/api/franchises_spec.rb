@@ -19,7 +19,7 @@ describe Luchadeer::API::Franchises do
       stub_request(:get, franchise_path).to_return(body: '{ "results": { "cache": true } }')
 
       client.franchise("#{franchise_id}")
-      expect(client.cache["franchise-#{franchise_id}"]).to eq cache: true
+      expect(client.cache("franchise-#{franchise_id}")).to eq cache: true
     end
 
   end

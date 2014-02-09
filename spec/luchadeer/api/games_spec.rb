@@ -19,7 +19,7 @@ describe Luchadeer::API::Games do
       stub_request(:get, game_path).to_return(body: '{ "results": { "cache": true } }')
 
       client.game("#{game_id}")
-      expect(client.cache["game-#{game_id}"]).to eq cache: true
+      expect(client.cache("game-#{game_id}")).to eq cache: true
     end
 
   end

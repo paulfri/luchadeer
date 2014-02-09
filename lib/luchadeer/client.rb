@@ -8,7 +8,7 @@ module Luchadeer
   class Client
     include Luchadeer::API
 
-    attr_accessor :api_key, :cache
+    attr_accessor :api_key
     GIANT_BOMB = 'http://www.giantbomb.com/api'
 
     def initialize(opts = {})
@@ -17,8 +17,6 @@ module Luchadeer
       end
 
       yield self if block_given?
-
-      @cache ||= {}
     end
 
     def user_agent

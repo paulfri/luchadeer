@@ -4,10 +4,9 @@ module Luchadeer
 
       def franchise(id, refresh = false)
         cache_key = "franchise-#{id}"
-        @cache.delete(cache_key) if refresh
 
-        body = @cache.fetch(cache_key) do
-          @cache[cache_key] = get("franchise/3025-#{id}").body[:results]
+        body = cache(cache_key, refresh) do
+          get("franchise/3025-#{id}").body[:results]
         end
 
         Luchadeer::Franchise.new(body)

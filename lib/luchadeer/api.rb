@@ -11,5 +11,19 @@ module Luchadeer
     API_MODULES.each do |mod|
       include mod
     end
+
+    attr_writer :cache
+
+    def cache(key, refresh = false, &blk)
+      @cache ||= {}
+      @cache.delete(key) if refresh
+
+      if block_given?
+        @cache[key] || (@cache[key] = yield)
+      else
+        @cache.fetch(key)
+      end
+    end
+
   end
 end
