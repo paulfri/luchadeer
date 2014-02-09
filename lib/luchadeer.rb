@@ -13,6 +13,7 @@ require 'luchadeer/game'
 require 'luchadeer/location'
 require 'luchadeer/object'
 require 'luchadeer/person'
+require 'luchadeer/video'
 
 module Luchadeer
   class << self
