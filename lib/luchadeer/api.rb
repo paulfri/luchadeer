@@ -25,5 +25,11 @@ module Luchadeer
       end
     end
 
+    def fetch(path, refresh = false)
+      cache(path, refresh) do
+        get(path).body[:results]
+      end
+    end
+
   end
 end

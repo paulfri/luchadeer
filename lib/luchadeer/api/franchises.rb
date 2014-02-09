@@ -3,11 +3,7 @@ module Luchadeer
     module Franchises
 
       def franchise(id, refresh = false)
-        franchise = cache(franchise_path(id), refresh) do
-          get(franchise_path(id)).body[:results]
-        end
-
-        Luchadeer::Franchise.new(franchise)
+        Luchadeer::Franchise.new(fetch(franchise_path(id), refresh))
       end
 
     private

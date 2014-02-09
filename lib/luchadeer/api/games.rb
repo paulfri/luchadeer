@@ -3,11 +3,7 @@ module Luchadeer
     module Games
 
       def game(id, refresh = false)
-        game = cache(game_path(id), refresh) do
-          get(game_path(id)).body[:results]
-        end
-
-        Luchadeer::Game.new(game)
+        Luchadeer::Game.new(fetch(game_path(id), refresh))
       end
 
     private
