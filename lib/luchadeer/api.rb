@@ -4,6 +4,7 @@ require 'luchadeer/api/franchises'
 require 'luchadeer/api/games'
 require 'luchadeer/api/locations'
 require 'luchadeer/api/objects'
+require 'luchadeer/api/people'
 
 module Luchadeer
   module API
@@ -13,7 +14,8 @@ module Luchadeer
       Luchadeer::API::Franchises,
       Luchadeer::API::Games,
       Luchadeer::API::Locations,
-      Luchadeer::API::Objects
+      Luchadeer::API::Objects,
+      Luchadeer::API::People,
     ]
 
     API_MODULES.each do |mod|
