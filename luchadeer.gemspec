@@ -8,8 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = Luchadeer::VERSION
   spec.authors       = ['Paul Friedman']
   spec.email         = ['paulrfri@gmail.com']
-  spec.summary       = %q{A smart Giant Bomb API client library.}
-  # spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{The bombingest Giant Bomb API client library for Ruby.}
   spec.homepage      = 'https://github.com/paulfri/luchadeer'
   spec.license       = 'MIT'
 
