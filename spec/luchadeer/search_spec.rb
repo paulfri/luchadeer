@@ -26,17 +26,28 @@ describe Luchadeer::Search do
       subject do
         stub_request(:get, search_path).to_return(body:
                             '{ "results": [
-                                {"resource_type" : "game"},
-                                {"resource_type" : "franchise"},
-                                {"resource_type" : "character"}
+                                {"resource_type": "character"},
+                                {"resource_type": "company"},
+                                {"resource_type": "concept"},
+                                {"resource_type": "franchise"},
+                                {"resource_type": "game"},
+                                {"resource_type": "location"},
+                                {"resource_type": "object"},
+                                {"resource_type": "person"},
+                                {"resource_type": "video"}
                             ] }')
         described_class.new(query).fetch
       end
 
-      its([0]) { should be_instance_of Luchadeer::Game }
-      its([1]) { should be_instance_of Luchadeer::Franchise }
-      its([2]) { should be_instance_of Luchadeer::Character }
-      # TODO: add mappings here as the resources get added
+      its([0]) { should be_instance_of Luchadeer::Character }
+      its([1]) { should be_instance_of Luchadeer::Company }
+      its([2]) { should be_instance_of Luchadeer::Concept }
+      its([3]) { should be_instance_of Luchadeer::Franchise }
+      its([4]) { should be_instance_of Luchadeer::Game }
+      its([5]) { should be_instance_of Luchadeer::Location }
+      its([6]) { should be_instance_of Luchadeer::Object }
+      its([7]) { should be_instance_of Luchadeer::Person }
+      its([8]) { should be_instance_of Luchadeer::Video }
     end
 
     context 'when there are no results' do

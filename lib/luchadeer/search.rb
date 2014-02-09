@@ -1,15 +1,27 @@
 require 'luchadeer/character'
-require 'luchadeer/game'
+require 'luchadeer/company'
+require 'luchadeer/concept'
 require 'luchadeer/franchise'
+require 'luchadeer/game'
+require 'luchadeer/location'
+require 'luchadeer/object'
+require 'luchadeer/person'
+require 'luchadeer/video'
 
 module Luchadeer
   class Search
     attr_accessor :query
 
     RESOURCE_TYPES = {
-      'game'      => Luchadeer::Game,
+      'character' => Luchadeer::Character,
+      'company'   => Luchadeer::Company,
+      'concept'   => Luchadeer::Concept,
       'franchise' => Luchadeer::Franchise,
-      'character' => Luchadeer::Character
+      'game'      => Luchadeer::Game,
+      'location'  => Luchadeer::Location,
+      'object'    => Luchadeer::Object,
+      'person'    => Luchadeer::Person,
+      'video'     => Luchadeer::Video
     }
 
     def initialize(query)
