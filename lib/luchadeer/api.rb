@@ -2,14 +2,16 @@ require 'luchadeer/api/characters'
 require 'luchadeer/api/concepts'
 require 'luchadeer/api/franchises'
 require 'luchadeer/api/games'
+require 'luchadeer/api/objects'
 
 module Luchadeer
   module API
     API_MODULES = [
       Luchadeer::API::Characters,
       Luchadeer::API::Concepts,
-      Luchadeer::API::Games,
       Luchadeer::API::Franchises,
+      Luchadeer::API::Games,
+      Luchadeer::API::Objects
     ]
 
     API_MODULES.each do |mod|

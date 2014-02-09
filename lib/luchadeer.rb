@@ -3,14 +3,13 @@ require 'luchadeer/version'
 require 'luchadeer/api'
 require 'luchadeer/client'
 require 'luchadeer/error'
+require 'luchadeer/search'
 
 require 'luchadeer/character'
 require 'luchadeer/concept'
 require 'luchadeer/franchise'
 require 'luchadeer/game'
-require 'luchadeer/search'
-
-
+require 'luchadeer/object'
 
 module Luchadeer
   class << self
