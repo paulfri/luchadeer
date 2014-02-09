@@ -13,6 +13,11 @@ describe Luchadeer::API::Games do
       expect(stub).to have_been_requested
     end
 
+    it 'returns a Luchadeer::Game' do
+      stub_request(:get, game_path).to_return(body: '{ "results": { "key": "value"}}')
+      expect(client.game("#{game_id}")).to be_instance_of Luchadeer::Game
+    end
+
     it 'caches responses' do
       stub_request(:get, game_path).to_return(body: '{ }')
       expect(client).to receive :cache
