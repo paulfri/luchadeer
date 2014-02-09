@@ -9,6 +9,7 @@ require 'luchadeer/character'
 require 'luchadeer/concept'
 require 'luchadeer/franchise'
 require 'luchadeer/game'
+require 'luchadeer/location'
 require 'luchadeer/object'
 
 module Luchadeer

@@ -2,6 +2,7 @@ require 'luchadeer/api/characters'
 require 'luchadeer/api/concepts'
 require 'luchadeer/api/franchises'
 require 'luchadeer/api/games'
+require 'luchadeer/api/locations'
 require 'luchadeer/api/objects'
 
 module Luchadeer
@@ -11,6 +12,7 @@ module Luchadeer
       Luchadeer::API::Concepts,
       Luchadeer::API::Franchises,
       Luchadeer::API::Games,
+      Luchadeer::API::Locations,
       Luchadeer::API::Objects
     ]
 
