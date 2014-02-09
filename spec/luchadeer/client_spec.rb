@@ -30,7 +30,7 @@ describe Luchadeer::Client do
         expect(client.api_key?).to be_false
       end
     end
-  end 
+  end
 
   describe '#get' do
     let(:url) { %r(http://laika.io) }

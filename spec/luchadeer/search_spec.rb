@@ -24,7 +24,7 @@ describe Luchadeer::Search do
 
     describe 'generates the proper class based on the result type' do
       subject do
-        stub = stub_request(:get, search_path).to_return(body:
+        stub_request(:get, search_path).to_return(body:
                             '{ "results": [
                                 {"resource_type" : "game"},
                                 {"resource_type" : "franchise"},
@@ -41,7 +41,7 @@ describe Luchadeer::Search do
 
     context 'when there are no results' do
       it 'returns an empty array' do
-        stub = stub_request(:get, search_path).to_return(body:
+        stub_request(:get, search_path).to_return(body:
           '{ "results": [{ "resource_type": "banana"}] }')
         expect(described_class.new(query).fetch).to eq []
       end
@@ -49,7 +49,7 @@ describe Luchadeer::Search do
 
     context 'when the resource type isn\'t mapped' do
       it 'skips modeling the resource' do
-        stub = stub_request(:get, search_path).to_return(body: '{ "results": [] }')
+        stub_request(:get, search_path).to_return(body: '{ "results": [] }')
         expect(described_class.new(query).fetch).to eq []
       end
     end

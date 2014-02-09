@@ -25,7 +25,7 @@ describe Luchadeer::Resource do
     end
 
     context 'with arrays as values' do
-      let(:arrayed) { hash.merge(arrayed: [ { test: "array" } ]) }
+      let(:arrayed) { hash.merge(arrayed: [{ test: "array" }]) }
       let(:arrayed_resource) { described_class.new(arrayed) }
 
       it 'recursively generates resource objects inside nested arrays' do
