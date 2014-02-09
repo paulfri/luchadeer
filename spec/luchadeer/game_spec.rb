@@ -1,5 +1,4 @@
-require 'luchadeer'
-require 'webmock'
+require 'spec_helper'
 
 describe Luchadeer::Game do
 

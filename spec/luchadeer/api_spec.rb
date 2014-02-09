@@ -1,4 +1,4 @@
-require 'luchadeer'
+require 'spec_helper'
 
 describe Luchadeer::API do
   let(:client) { Luchadeer::Client.new }

@@ -1,4 +1,4 @@
-require 'luchadeer'
+require 'spec_helper'
 
 describe Luchadeer::Client do
   let(:api_key) { 'luchadeer' }

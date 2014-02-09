@@ -1,4 +1,4 @@
-require 'luchadeer'
+require 'spec_helper'
 
 describe Luchadeer::Resource do
   let(:hash) { { first_name: 'Chie', last_name: 'Satonaka', age: 16 } }

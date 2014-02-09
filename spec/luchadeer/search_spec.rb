@@ -1,5 +1,4 @@
-require 'luchadeer'
-require 'webmock/rspec'
+require 'spec_helper'
 
 describe Luchadeer::Search do
   let(:query) { 'Chie Satonaka' }

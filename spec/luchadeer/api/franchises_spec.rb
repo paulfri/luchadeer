@@ -1,5 +1,4 @@
-require 'luchadeer'
-require 'webmock/rspec'
+require 'spec_helper'
 
 describe Luchadeer::API::Franchises do
   let(:client) { Luchadeer::Client.new }
