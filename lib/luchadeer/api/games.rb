@@ -3,13 +3,7 @@ module Luchadeer
     module Games
 
       def game(id, refresh = false)
-        fetch(game_path(id), refresh, Luchadeer::Game)
-      end
-
-    private
-
-      def game_path(id)
-        "game/3030-#{id}"
+        fetch("game/3030-#{id}", refresh, Luchadeer::Game)
       end
 
     end

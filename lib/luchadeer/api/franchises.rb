@@ -3,13 +3,7 @@ module Luchadeer
     module Franchises
 
       def franchise(id, refresh = false)
-        fetch(franchise_path(id), refresh, Luchadeer::Franchise)
-      end
-
-    private
-
-      def franchise_path(id)
-        "franchise/3025-#{id}"
+        fetch("franchise/3025-#{id}", refresh, Luchadeer::Franchise)
       end
 
     end
