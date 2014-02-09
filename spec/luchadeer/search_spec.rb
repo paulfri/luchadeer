@@ -27,13 +27,15 @@ describe Luchadeer::Search do
         stub = stub_request(:get, search_path).to_return(body:
                             '{ "results": [
                                 {"resource_type" : "game"},
-                                {"resource_type" : "franchise"}
+                                {"resource_type" : "franchise"},
+                                {"resource_type" : "character"}
                             ] }')
         described_class.new(query).fetch
       end
 
       its([0]) { should be_instance_of Luchadeer::Game }
       its([1]) { should be_instance_of Luchadeer::Franchise }
+      its([2]) { should be_instance_of Luchadeer::Character }
       # TODO: add mappings here as the resources get added
     end
 

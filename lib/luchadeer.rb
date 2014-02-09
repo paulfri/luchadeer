@@ -6,6 +6,7 @@ require 'luchadeer/error'
 require 'luchadeer/game'
 require 'luchadeer/search'
 require 'luchadeer/franchise'
+require 'luchadeer/character'
 
 module Luchadeer
   class << self

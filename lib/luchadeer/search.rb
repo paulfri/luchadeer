@@ -1,3 +1,4 @@
+require 'luchadeer/character'
 require 'luchadeer/game'
 require 'luchadeer/franchise'
 
@@ -7,7 +8,8 @@ module Luchadeer
 
     RESOURCE_TYPES = {
       'game'      => Luchadeer::Game,
-      'franchise' => Luchadeer::Franchise
+      'franchise' => Luchadeer::Franchise,
+      'character' => Luchadeer::Character
     }
 
     def initialize(query)

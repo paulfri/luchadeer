@@ -1,9 +1,11 @@
-require 'luchadeer/api/games'
+require 'luchadeer/api/characters'
 require 'luchadeer/api/franchises'
+require 'luchadeer/api/games'
 
 module Luchadeer
   module API
     API_MODULES = [
+      Luchadeer::API::Characters,
       Luchadeer::API::Games,
       Luchadeer::API::Franchises,
     ]
