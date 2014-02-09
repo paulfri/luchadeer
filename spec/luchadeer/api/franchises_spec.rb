@@ -10,15 +10,13 @@ describe Luchadeer::API::Franchises do
     it 'requests the right url' do
       stub = stub_request(:get, franchise_path).to_return(body: '{ }')
       client.franchise("#{franchise_id}")
-
       expect(stub).to have_been_requested
     end
 
     it 'caches responses' do
-      stub_request(:get, franchise_path).to_return(body: '{ "results": { "cache": true } }')
-
+      stub_request(:get, franchise_path).to_return(body: '{ }')
+      expect(client).to receive :cache
       client.franchise("#{franchise_id}")
-      expect(client.cache("franchise-#{franchise_id}")).to eq cache: true
     end
 
   end

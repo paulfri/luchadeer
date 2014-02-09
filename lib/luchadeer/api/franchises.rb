@@ -3,13 +3,17 @@ module Luchadeer
     module Franchises
 
       def franchise(id, refresh = false)
-        cache_key = "franchise-#{id}"
-
-        body = cache(cache_key, refresh) do
-          get("franchise/3025-#{id}").body[:results]
+        franchise = cache(franchise_path(id), refresh) do
+          get(franchise_path(id)).body[:results]
         end
 
-        Luchadeer::Franchise.new(body)
+        Luchadeer::Franchise.new(franchise)
+      end
+
+    private
+
+      def franchise_path(id)
+        "franchise/3025-#{id}"
       end
 
     end
