@@ -27,10 +27,12 @@ module Luchadeer
       end
     end
 
-    def fetch(path, refresh = false)
-      cache(path, refresh) do
+    def fetch(path, refresh = false, klass = Luchadeer::Resource)
+      return unless results = cache(path, refresh) do
         get(path).body[:results]
       end
+
+      results.is_a?(Array) ? results.map { |r| klass.new(r) } : klass.new(results)
     end
 
   end

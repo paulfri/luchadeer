@@ -43,6 +43,59 @@ describe Luchadeer::API do
         end
       end
     end
+
+    describe '#fetch' do
+      it 'uses the cache' do
+        stub_request(:get, %r(http://www.giantbomb.com/api/game-3030/21373))
+          .to_return(body:'{ }')
+
+        client.should_receive :cache
+        client.fetch('game-3030/21373')
+      end
+
+      context 'with a single result' do
+        before :each do
+          stub_request(:get, %r(http://www.giantbomb.com/api/game-3030/21373))
+            .to_return(body:'{ "results": { "name": "Narukami" } }')
+        end
+
+        it 'returns an object of the provided class' do
+          expect(client.fetch('game-3030/21373', false, Luchadeer::Game))
+            .to be_instance_of Luchadeer::Game
+        end
+
+        it 'defaults to Luchadeer::Resource' do
+          expect(client.fetch('game-3030/21373')).to be_instance_of Luchadeer::Resource
+        end
+      end
+
+      context 'with an array of results' do
+        before :each do
+          stub_request(:get, %r(http://www.giantbomb.com/api/game-3030/21373))
+            .to_return(body:'{ "results": [{ "name": "Narukami" }, { "name": "Hanamura"}] }')
+        end
+
+        it 'returns an array' do
+          expect(client.fetch('game-3030/21373')).to be_instance_of Array
+        end
+
+        it 'returns objects of the provided class' do
+          expect(client.fetch('game-3030/21373', false, Luchadeer::Game)[0])
+            .to be_instance_of Luchadeer::Game
+          expect(client.fetch('game-3030/21373', false, Luchadeer::Game)[1])
+            .to be_instance_of Luchadeer::Game
+        end
+      end
+
+      context 'with no results' do
+        it 'returns nil' do
+          stub_request(:get, %r(http://www.giantbomb.com/api/game-3030/21373))
+            .to_return(body:'{ }')
+
+          expect(client.fetch('game-3030/21373')).to be_nil
+        end
+      end
+    end
   end
 
 end

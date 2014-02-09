@@ -3,7 +3,7 @@ module Luchadeer
     module Characters
 
       def character(id, refresh = false)
-        Luchadeer::Character.new(fetch(character_path(id), refresh))
+        fetch(character_path(id), refresh, Luchadeer::Character)
       end
 
     private

@@ -3,7 +3,7 @@ module Luchadeer
     module Games
 
       def game(id, refresh = false)
-        Luchadeer::Game.new(fetch(game_path(id), refresh))
+        fetch(game_path(id), refresh, Luchadeer::Game)
       end
 
     private
