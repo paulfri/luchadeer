@@ -44,4 +44,27 @@ describe Luchadeer::Resource do
     end
   end
 
+  describe '#detail' do
+    before :each do
+      Luchadeer.client = Luchadeer::Client.new
+    end
+
+    context 'when api_detail_url is present' do
+      let(:url) { 'http://www.giantbomb.com/api/game-3030/1' }
+      let(:resource) { described_class.new(api_detail_url: url) }
+
+      it 'fetches details and returns the new object' do
+        stub_request(:get, %r(#{url})).to_return(body: '{ "results": { "detailed?": true } }')
+        expect(resource.detail.detailed?).to be_true
+      end
+    end
+
+    context 'when api_detail_url is not present' do
+      let(:resource) { described_class.new }
+
+      it 'returns the original object' do
+        expect(resource.detail).to eq resource
+      end
+    end
+  end
 end

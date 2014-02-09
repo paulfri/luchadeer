@@ -19,6 +19,10 @@ module Luchadeer
       @hash_table
     end
 
+    def detail
+      api_detail_url ? Luchadeer.client.fetch(api_detail_url, false, self.class) : self
+    end
+
   private
 
     def deep_structify(k, v)
