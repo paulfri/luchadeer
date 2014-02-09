@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Luchadeer::API::Characters do
   let(:client) { Luchadeer::Client.new }
 
-  describe '#games' do
+  describe '#characters' do
     let(:character_id) { 1 }
     let(:character_path) { %r(#{Luchadeer::Client::GIANT_BOMB}/character/3005-#{character_id}) }
 

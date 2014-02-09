@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Luchadeer::Location do
+describe Luchadeer::Company do
 
   it 'is a resource' do
     expect(described_class.new).to be_a Luchadeer::Resource
@@ -13,13 +13,13 @@ describe Luchadeer::Location do
       Luchadeer.client = client
     end
 
-    it 'forwards to Client#location with arguments' do
-      expect(client).to receive(:location).with(1, true)
+    it 'forwards to Client#company with arguments' do
+      expect(client).to receive(:company).with(1, true)
       described_class.find(1, true)
     end
 
-    it 'forwards to Client#location with default refresh' do
-      expect(client).to receive(:location).with(1, false)
+    it 'forwards to Client#company with default refresh' do
+      expect(client).to receive(:company).with(1, false)
       described_class.find(1)
     end
   end
