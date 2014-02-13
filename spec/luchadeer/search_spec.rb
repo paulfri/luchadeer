@@ -5,12 +5,22 @@ describe Luchadeer::Search do
   let(:search_path) { %r(#{Luchadeer::Client::GIANT_BOMB}/search) }
 
   describe '#initialize' do
-    it 'instantiates with a search query' do
-      expect(described_class.new(query).query).to eq query
+    it 'instantiates with no arguments' do
+      expect(described_class.new).to be_instance_of described_class
+    end
+
+    it 'instantiates with an options hash' do
+      expect(described_class.new(query: query).query).to eq query
+    end
+
+    it 'yields self if block given' do
+      expect { |b| described_class.new(&b) }.to yield_control
     end
   end
 
   describe '#fetch' do
+    let(:search) { described_class.new(query: query).fetch }
+
     before :each do
       Luchadeer.client = Luchadeer::Client.new
     end
@@ -18,7 +28,7 @@ describe Luchadeer::Search do
     it 'queries the Giant Bomb search API' do
       stub = stub_request(:get, search_path).to_return(body: '{ "results": [] }')
 
-      described_class.new(query).fetch
+      search
       expect(stub).to have_been_requested
     end
 
@@ -36,7 +46,7 @@ describe Luchadeer::Search do
                                 {"resource_type": "person"},
                                 {"resource_type": "video"}
                             ] }')
-        described_class.new(query).fetch
+        search
       end
 
       its([0]) { should be_instance_of Luchadeer::Character }
@@ -54,14 +64,14 @@ describe Luchadeer::Search do
       it 'returns an empty array' do
         stub_request(:get, search_path).to_return(body:
           '{ "results": [{ "resource_type": "banana"}] }')
-        expect(described_class.new(query).fetch).to eq []
+        expect(search).to be_empty
       end
     end
 
     context 'when the resource type isn\'t mapped' do
       it 'skips modeling the resource' do
         stub_request(:get, search_path).to_return(body: '{ "results": [] }')
-        expect(described_class.new(query).fetch).to eq []
+        expect(search).to be_empty
       end
     end
   end

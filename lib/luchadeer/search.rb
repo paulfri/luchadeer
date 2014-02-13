@@ -10,7 +10,7 @@ require 'luchadeer/video'
 
 module Luchadeer
   class Search
-    attr_accessor :query
+    attr_accessor :query, :limit, :page
 
     RESOURCE_TYPES = {
       'character' => Luchadeer::Character,
@@ -24,8 +24,12 @@ module Luchadeer
       'video'     => Luchadeer::Video
     }
 
-    def initialize(query)
-      @query = query
+    def initialize(opts = {})
+      opts.each do |key, value|
+        send(:"#{key}=", value)
+      end
+      
+      yield self if block_given?
     end
 
     def fetch
