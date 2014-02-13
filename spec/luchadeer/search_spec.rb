@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Luchadeer::Search do
   let(:query) { 'Chie Satonaka' }
   let(:search_path) { %r(#{Luchadeer::Client::GIANT_BOMB}/search) }
+  let(:empty_body) { { body: '{ "results": [] }' } }
 
   describe '#initialize' do
     it 'instantiates with no arguments' do
@@ -26,10 +27,30 @@ describe Luchadeer::Search do
     end
 
     it 'queries the Giant Bomb search API' do
-      stub = stub_request(:get, search_path).to_return(body: '{ "results": [] }')
+      stub = stub_request(:get, search_path).to_return(empty_body)
 
       search
       expect(stub).to have_been_requested
+    end
+
+    describe 'request parameters' do
+      it 'includes supplied parameters' do
+        stub = stub_request(:get, "http://www.giantbomb.com/api/search")
+          .with(query: { api_key: nil, format: 'json', query: query, limit: 10 })
+          .to_return(empty_body)
+
+        described_class.new(query: query, limit: 10).fetch
+        expect(stub).to have_been_requested
+      end
+
+      it 'omits nil parameters' do
+        stub = stub_request(:get, "http://www.giantbomb.com/api/search")
+          .with(query: { api_key: nil, format: 'json', query: query })
+          .to_return(empty_body)
+
+        described_class.new(query: query, limit: nil, page: nil).fetch
+        expect(stub).to have_been_requested
+      end
     end
 
     describe 'generates the proper class based on the result type' do
@@ -70,7 +91,7 @@ describe Luchadeer::Search do
 
     context 'when the resource type isn\'t mapped' do
       it 'skips modeling the resource' do
-        stub_request(:get, search_path).to_return(body: '{ "results": [] }')
+        stub_request(:get, search_path).to_return(empty_body)
         expect(search).to be_empty
       end
     end

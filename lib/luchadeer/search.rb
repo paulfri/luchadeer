@@ -28,7 +28,7 @@ module Luchadeer
       opts.each do |key, value|
         send(:"#{key}=", value)
       end
-      
+
       yield self if block_given?
     end
 
@@ -42,7 +42,7 @@ module Luchadeer
   private
 
     def search_params
-      { query: @query }
+      { query: @query, limit: @limit, page: @page }.delete_if { |_, v| v.nil? }
     end
 
   end
