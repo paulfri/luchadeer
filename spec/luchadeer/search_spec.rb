@@ -81,16 +81,16 @@ describe Luchadeer::Search do
       its([8]) { should be_instance_of Luchadeer::Video }
     end
 
-    context 'when there are no results' do
-      it 'returns an empty array' do
+    context 'when the resource type isn\'t mapped' do
+      it 'skips modeling the resource' do
         stub_request(:get, search_path).to_return(body:
           '{ "results": [{ "resource_type": "banana"}] }')
         expect(search).to be_empty
       end
     end
 
-    context 'when the resource type isn\'t mapped' do
-      it 'skips modeling the resource' do
+    context 'when there are no results' do
+      it 'returns an empty array' do
         stub_request(:get, search_path).to_return(empty_body)
         expect(search).to be_empty
       end
