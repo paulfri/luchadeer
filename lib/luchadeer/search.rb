@@ -10,8 +10,6 @@ require 'luchadeer/video'
 
 module Luchadeer
   class Search
-    attr_accessor :query, :limit, :page
-
     RESOURCE_TYPES = {
       'character' => Luchadeer::Character,
       'company'   => Luchadeer::Company,
@@ -37,6 +35,24 @@ module Luchadeer
         type = r.delete(:resource_type)
         RESOURCE_TYPES[type] && RESOURCE_TYPES[type].new(r)
       end.compact
+    end
+
+    def limit(l = nil)
+      return @limit unless l
+      @limit = l
+      self
+    end
+
+    def query(q = nil)
+      return @query unless q
+      @query = q
+      self
+    end
+
+    def page(p = nil)
+      return @page unless p
+      @page = p
+      self
     end
 
   private

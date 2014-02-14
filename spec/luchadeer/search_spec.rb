@@ -2,6 +2,9 @@ require 'spec_helper'
 
 describe Luchadeer::Search do
   let(:query) { 'Chie Satonaka' }
+  let(:limit) { 10 }
+  let(:page)  { 1 }
+  let(:search) { described_class.new }
   let(:search_path) { %r(#{Luchadeer::Client::GIANT_BOMB}/search) }
   let(:empty_body) { { body: '{ "results": [] }' } }
 
@@ -16,6 +19,36 @@ describe Luchadeer::Search do
 
     it 'yields self if block given' do
       expect { |b| described_class.new(&b) }.to yield_control
+    end
+  end
+
+  describe '#query' do
+    it 'sets the query' do
+      expect(search.query(query).query).to eq query
+    end
+
+    it 'returns the search instance' do
+      expect(search.query(query)).to eq search
+    end
+  end
+
+  describe '#limit' do
+    it 'sets the limit' do
+      expect(search.limit(limit).limit).to eq limit
+    end
+
+    it 'returns the search instance' do
+      expect(search.limit(limit)).to eq search
+    end
+  end
+
+  describe '#page' do
+    it 'sets the page' do
+      expect(search.page(page).page).to eq page
+    end
+
+    it 'returns the search instance' do
+      expect(search.page(page)).to eq search
     end
   end
 
