@@ -10,6 +10,8 @@ require 'luchadeer/video'
 
 module Luchadeer
   class Search
+    attr_writer :query, :limit, :page
+
     RESOURCE_TYPES = {
       'character' => Luchadeer::Character,
       'company'   => Luchadeer::Company,
