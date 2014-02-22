@@ -22,9 +22,6 @@ module Luchadeer
       'video'     => Luchadeer::Video
     }
 
-    QUERY_PARAMS = [:query, :limit, :page]
-    attr_writer *QUERY_PARAMS
-
     def initialize(opts = {})
       opts.each do |key, value|
         send(:"#{key}=", value)
@@ -40,6 +37,9 @@ module Luchadeer
       end.compact
     end
 
+    QUERY_PARAMS = [:query, :limit, :page]
+    attr_writer *QUERY_PARAMS
+
     QUERY_PARAMS.each do |method|
       define_method("#{method}") do |param = nil|
         ivar = "@#{method.to_s}"
@@ -49,10 +49,30 @@ module Luchadeer
       end
     end
 
+    def resources(resources = nil)
+      return @resources unless resources
+      append_resources(resources)
+      self
+    end
+
   private
 
     def search_params
       { query: @query, limit: @limit, page: @page }.delete_if { |_, v| v.nil? }
+    end
+
+    def append_resources(resources)
+      @resources ||= ''
+      resources = (RESOURCE_TYPES.invert[resources] || '') if resources.is_a? Class
+
+      rx = resources.is_a?(Array) ? resources : resources.split(',')
+      rx.each do |r|
+        r = (RESOURCE_TYPES.invert[r] || '') if r.is_a? Class        
+        RESOURCE_TYPES[r] or raise(ArgumentError, 'Invalid resource type supplied')
+        @resources << ",#{r}"
+      end
+
+      @resources.sub!(/\A,+/, '')
     end
 
   end

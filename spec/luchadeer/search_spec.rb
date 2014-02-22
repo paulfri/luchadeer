@@ -52,6 +52,56 @@ describe Luchadeer::Search do
     end
   end
 
+  describe '#resources' do
+    context 'when called with a valid string' do
+      it 'sets resources to the given string' do
+        expect(search.resources('person,location').resources).to eq 'person,location'
+      end
+    end
+
+    context 'when called with an invalid string' do
+      it 'raises ArgumentError' do
+        expect { search.resources('naoto,yosuke,kanji').resources }.to raise_error ArgumentError
+      end
+    end
+
+    context 'when called with class' do
+      it 'maps the class to a string' do
+        expect(search.resources(Luchadeer::Person).resources).to eq 'person'
+      end
+    end
+
+    context 'when called with array' do
+      context 'of valid' do
+        context 'strings' do
+          it 'sets resources to comma-delimited string of given strings' do
+            expect(search.resources(['person', 'location']).resources).to eq 'person,location'
+          end
+        end
+
+        context 'classes' do
+          it 'maps the classes to strings' do
+            expect(search.resources([Luchadeer::Person, Luchadeer::Location]).resources).to eq 'person,location'
+          end
+        end
+      end
+
+      context 'of invalid' do
+        context 'strings' do
+          it 'raises ArgumentError' do
+            expect { search.resources ['person', 'naoto'] }.to raise_error ArgumentError
+          end
+        end
+
+        context 'classes' do
+          it 'raises ArgumentError' do
+            expect { search.resources [String, BasicObject, Luchadeer::Search] }.to raise_error ArgumentError
+          end
+        end
+      end
+    end
+  end
+
   describe '#fetch' do
     let(:search) { described_class.new(query: query).fetch }
 
