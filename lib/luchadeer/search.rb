@@ -39,22 +39,13 @@ module Luchadeer
       end.compact
     end
 
-    def limit(l = nil)
-      return @limit unless l
-      @limit = l
-      self
-    end
-
-    def query(q = nil)
-      return @query unless q
-      @query = q
-      self
-    end
-
-    def page(p = nil)
-      return @page unless p
-      @page = p
-      self
+    [:limit, :query, :page].each do |method|
+      define_method("#{method}") do |param = nil|
+        ivar = "@#{method.to_s}"
+        return instance_variable_get(ivar) unless param
+        instance_variable_set(ivar, param)
+        self
+      end
     end
 
   private
