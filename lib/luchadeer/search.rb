@@ -10,8 +10,6 @@ require 'luchadeer/video'
 
 module Luchadeer
   class Search
-    attr_writer :query, :limit, :page
-
     RESOURCE_TYPES = {
       'character' => Luchadeer::Character,
       'company'   => Luchadeer::Company,
@@ -23,6 +21,9 @@ module Luchadeer
       'person'    => Luchadeer::Person,
       'video'     => Luchadeer::Video
     }
+
+    QUERY_PARAMS = [:query, :limit, :page]
+    attr_writer *QUERY_PARAMS
 
     def initialize(opts = {})
       opts.each do |key, value|
@@ -39,7 +40,7 @@ module Luchadeer
       end.compact
     end
 
-    [:limit, :query, :page].each do |method|
+    QUERY_PARAMS.each do |method|
       define_method("#{method}") do |param = nil|
         ivar = "@#{method.to_s}"
         return instance_variable_get(ivar) unless param
