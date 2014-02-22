@@ -12,10 +12,7 @@ module Luchadeer
     GIANT_BOMB = 'http://www.giantbomb.com/api'
 
     def initialize(opts = {})
-      opts.each do |key, value|
-        send(:"#{key}=", value)
-      end
-
+      @api_key = opts[:api_key] if opts[:api_key]
       yield self if block_given?
     end
 
