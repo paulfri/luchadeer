@@ -4,7 +4,7 @@
 [![Coverage Status](https://coveralls.io/repos/paulfri/luchadeer/badge.png?branch=master)][coverage]
 [![Code Climate](https://codeclimate.com/github/paulfri/luchadeer.png)][grade]
 
-[build]: (https://travis-ci.org/paulfri/luchadeer)
+[build]: https://travis-ci.org/paulfri/luchadeer
 [coverage]: https://coveralls.io/r/paulfri/luchadeer?branch=master
 [grade]: https://codeclimate.com/github/paulfri/luchadeer
 
