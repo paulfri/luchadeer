@@ -47,12 +47,23 @@ end
 ## Usage
 
 ```ruby
+# Resources
 Luchadeer::Game.find(21373) # or...
 my_client.game(21373) # => #<Luchadeer::Game name="Shin Megami Tensei: Persona 4" ...>
+
+# Search
+# mix and match whatever syntax you like
+Luchadeer::Search.new(page: 1, limit: 50, query: 'valkyria').fetch
+Luchadeer::Search.new.page(1).limit(50).query('valkyria')
+Luchadeer::Search.new do |s|
+  s.query = 'valkyria'
+  s.page = 1
+  s.limit = 50
+end.fetch
 ```
 
 ## TODO
-1. Add filtering to search.
+1. Add custom filtering to search (i.e., the 'filter' request parameter).
 2. Add per-resource searching class methods on each resource object.
 3. Refactor the test suite with shared example groups.
 4. Make the caching layer more flexible - more options besides in-memory store. Add a null store, too.
