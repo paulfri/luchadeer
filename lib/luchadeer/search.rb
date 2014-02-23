@@ -37,7 +37,7 @@ module Luchadeer
       end.compact
     end
 
-    QUERY_PARAMS = [:query, :limit, :page]
+    QUERY_PARAMS = [:query, :limit, :page, :fields, :resources, :sort]
     attr_writer *QUERY_PARAMS
 
     QUERY_PARAMS.each do |method|
@@ -55,10 +55,17 @@ module Luchadeer
       self
     end
 
+    def sort(attribute = nil, dir = :asc)
+      return @sort unless attribute
+      @sort = "#{attribute}:#{dir}"
+      self
+    end
+
   private
 
     def search_params
-      { query: @query, limit: @limit, page: @page }.delete_if { |_, v| v.nil? }
+      { query: @query, limit: @limit, resources: @resources, page: @page,
+        sort: @sort }.delete_if { |_, v| v.nil? }
     end
 
     def append_resources(resources)

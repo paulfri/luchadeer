@@ -4,6 +4,7 @@ describe Luchadeer::Search do
   let(:query) { 'Chie Satonaka' }
   let(:limit) { 10 }
   let(:page)  { 1 }
+  let(:sort)  { 'name' }
   let(:search) { described_class.new }
   let(:search_path) { %r(#{Luchadeer::Client::GIANT_BOMB}/search) }
   let(:empty_body) { { body: '{ "results": [] }' } }
@@ -49,6 +50,24 @@ describe Luchadeer::Search do
 
     it 'returns the search instance' do
       expect(search.page(page)).to eq search
+    end
+  end
+
+  describe '#sort' do
+    it 'sets the sort to the given parameter and defaults to ascending' do
+      expect(search.sort(sort).sort).to eq "#{sort}:asc"
+    end
+
+    it 'allows changing the sort direction' do
+      expect(search.sort(sort, :desc).sort).to eq "#{sort}:desc"
+    end
+
+    it 'allows changing the sort with a string' do
+      expect(search.sort(sort, 'desc').sort).to eq "#{sort}:desc"
+    end
+
+    it 'returns the search instance' do
+      expect(search.sort(sort)).to eq search
     end
   end
 
@@ -118,11 +137,13 @@ describe Luchadeer::Search do
 
     describe 'request parameters' do
       it 'includes supplied parameters' do
+        params = { query: query, limit: 10, page: 1, resources: 'video', sort: 'name:asc' }
+
         stub = stub_request(:get, "http://www.giantbomb.com/api/search")
-          .with(query: { api_key: nil, format: 'json', query: query, limit: 10 })
+          .with(query: { api_key: nil, format: 'json' }.merge(params))
           .to_return(empty_body)
 
-        described_class.new(query: query, limit: 10).fetch
+        described_class.new(params).fetch
         expect(stub).to have_been_requested
       end
 
