@@ -50,7 +50,13 @@ my_client.game(21373) # => #<Luchadeer::Game name="Shin Megami Tensei: Persona 4
 
 # Search: mix and match whatever syntax you like
 Luchadeer::Search.new(page: 1, limit: 50, query: 'valkyria').fetch
-Luchadeer::Search.new.page(1).limit(50).query('valkyria').fetch
+
+search = Luchadeer::Search.new
+search.page(1).limit(50).sort('name', :desc)
+search.resources([Luchadeer::Game, Luchadeer::Character])
+search.query('valkyria')
+search.fetch
+
 Luchadeer::Search.new { |s|
   s.query = 'valkyria'
   s.page = 1
@@ -63,3 +69,4 @@ Luchadeer::Search.new { |s|
 2. Add per-resource searching class methods on each resource object.
 3. Refactor the test suite with shared example groups.
 4. Make the caching layer more flexible - more options besides in-memory store. Add a null store, too.
+5. Add remaining missing resources: accessory, chat, game_rating, genre, platform, promo, rating_board, region, release, review, theme, types, user_review, video_type. None of these show up in search. Refactoring is probably necessary.
