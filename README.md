@@ -18,16 +18,13 @@ The bombingest Giant Bomb API client library for Ruby.
 5. Thread-ready (thready?): no global or class state. Use convenience methods to use a default client per-thread, or use an alternate syntax for full control.
 
 ## Configuration
-Get your API key [here](http://www.giantbomb.com/api).
+Get your API key [here](http://www.giantbomb.com/api). If you have a premium account, your API key should give you access to subscriber-only video resources, as well as links to HD-quality videos.
 
 ```ruby
 Luchadeer.configure(api_key: 'my_api_key') # default client for this thread
 Luchadeer::Client.new(api_key: 'my_api_key')
-```
 
-You can also pass a block to either method, and it will yield the client object to configure to your liking.
-
-```ruby
+# You can also pass a block to either method, and it will yield the client object to configure to your liking.
 Luchadeer.configure do |client|
   client.api_key = 'my_api_key'
 end
@@ -51,15 +48,14 @@ end
 Luchadeer::Game.find(21373) # or...
 my_client.game(21373) # => #<Luchadeer::Game name="Shin Megami Tensei: Persona 4" ...>
 
-# Search
-# mix and match whatever syntax you like
+# Search: mix and match whatever syntax you like
 Luchadeer::Search.new(page: 1, limit: 50, query: 'valkyria').fetch
-Luchadeer::Search.new.page(1).limit(50).query('valkyria')
-Luchadeer::Search.new do |s|
+Luchadeer::Search.new.page(1).limit(50).query('valkyria').fetch
+Luchadeer::Search.new { |s|
   s.query = 'valkyria'
   s.page = 1
   s.limit = 50
-end.fetch
+}.fetch
 ```
 
 ## TODO
