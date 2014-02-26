@@ -23,11 +23,6 @@ Get your API key [here](http://www.giantbomb.com/api). If you have a premium acc
 ```ruby
 Luchadeer.configure(api_key: 'my_api_key') # default client for this thread
 Luchadeer::Client.new(api_key: 'my_api_key')
-
-# You can also pass a block to either method, and it will yield the client object to configure to your liking.
-Luchadeer.configure do |client|
-  client.api_key = 'my_api_key'
-end
 ```
 
 ## Supported resources
@@ -52,16 +47,18 @@ my_client.game(21373) # => #<Luchadeer::Game name="Shin Megami Tensei: Persona 4
 Luchadeer::Search.new(page: 1, limit: 50, query: 'valkyria').fetch
 
 search = Luchadeer::Search.new
-search.page(1).limit(50).sort('name', :desc)
-search.resources([Luchadeer::Game, Luchadeer::Character])
-search.query('valkyria')
+search.page(1).limit(50).sort('name', :desc) # default is :asc
+search.resources [Luchadeer::Game, Luchadeer::Character] # strings work too
+search.query 'valkyria'
 search.fetch
 
-Luchadeer::Search.new { |s|
+search = Luchadeer::Search.new do |s|
   s.query = 'valkyria'
   s.page = 1
   s.limit = 50
-}.fetch
+end
+
+results = search.fetch
 ```
 
 ## TODO
@@ -70,3 +67,4 @@ Luchadeer::Search.new { |s|
 3. Refactor the test suite with shared example groups.
 4. Make the caching layer more flexible - more options besides in-memory store. Add a null store, too.
 5. Add remaining missing resources: accessory, chat, game_rating, genre, platform, promo, rating_board, region, release, review, theme, types, user_review, video_type. None of these show up in search. Refactoring is probably necessary.
+6. 'ghost' object pattern - lazy-load details for partial models instead of requiring manual '.detail' invocation
