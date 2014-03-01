@@ -64,7 +64,6 @@ results = search.fetch
 ## TODO
 1. Add custom filtering to search (i.e., the 'filter' request parameter).
 2. Add per-resource searching class methods on each resource object.
-3. Refactor the test suite with shared example groups.
-4. Make the caching layer more flexible - more options besides in-memory store. Add a null store, too.
-5. Add remaining missing resources: accessory, chat, game_rating, genre, platform, promo, rating_board, region, release, review, theme, types, user_review, video_type. None of these show up in search. Refactoring is probably necessary.
-6. 'ghost' object pattern - lazy-load details for partial models instead of requiring manual '.detail' invocation
+3. Make the caching layer more flexible - more options besides in-memory store. Add a null store, too.
+4. Add remaining missing resources: accessory, chat, game_rating, genre, platform, promo, rating_board, region, release, review, theme, types, user_review, video_type. None of these show up in search. Refactoring is probably necessary.
+5. 'ghost' object pattern - lazy-load details for partial models instead of requiring manual '.detail' invocation
