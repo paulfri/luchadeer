@@ -34,17 +34,10 @@ module Luchadeer
       }
     end
 
-  private
+    %w[RedirectLimitReached RequestTimeout InvalidAPIKey URLFormatError FilterError
+    SubscriberOnly BadRequest NotFound InternalServerError ].each do |e|
+      const_set e, Class.new(Luchadeer::Error)
+    end
 
-    class RedirectLimitReached < Luchadeer::Error; end
-    class RequestTimeout < Luchadeer::Error; end
-
-    class InvalidAPIKey < Luchadeer::Error; end
-    class URLFormatError < Luchadeer::Error; end
-    class FilterError < Luchadeer::Error; end
-    class SubscriberOnly < Luchadeer::Error; end
-    class BadRequest < Luchadeer::Error; end
-    class NotFound < Luchadeer::Error; end
-    class InternalServerError < Luchadeer::Error; end
   end
 end
