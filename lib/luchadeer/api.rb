@@ -8,6 +8,8 @@ require 'luchadeer/api/objects'
 require 'luchadeer/api/people'
 require 'luchadeer/api/videos'
 
+require 'luchadeer/api/search'
+
 module Luchadeer
   module API
     API_MODULES = [
@@ -19,7 +21,9 @@ module Luchadeer
       Luchadeer::API::Locations,
       Luchadeer::API::Objects,
       Luchadeer::API::People,
-      Luchadeer::API::Videos
+      Luchadeer::API::Videos,
+
+      Luchadeer::API::Search
     ]
 
     API_MODULES.each do |mod|

@@ -22,4 +22,24 @@ shared_examples 'a resource' do |name|
     end
   end
 
+  describe '.search' do
+    let(:path)   { %r(#{Luchadeer::Client::GIANT_BOMB}/search) }
+    let(:query)  { 'chie' }
+    let(:params) { { query: query, resources: "#{name}" } }
+
+    it 'requests the right url' do
+      stub = stub_request(:get, path).to_return(body: '{ "results": [] }')
+      described_class.search(query)
+      expect(stub).to have_been_requested
+    end
+
+    it 'includes the right parameters' do
+      stub = stub_request(:get, path)
+        .with(query: hash_including(params))
+        .to_return(body: '{ "results": [] }')
+      described_class.search(query)
+      expect(stub).to have_been_requested
+    end
+  end
+
 end

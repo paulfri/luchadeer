@@ -1,6 +1,15 @@
 module Luchadeer
   class Resource < OpenStruct
 
+    class << self
+      def search(query)
+        Luchadeer.client.search do |s|
+          s.query(query)
+          s.resources(self)
+        end
+      end
+    end
+
     # http://andreapavoni.com/blog/2013/4/create-recursive-openstruct-from-a-ruby-hash
     def initialize(hash = nil)
       @table = {}
@@ -27,7 +36,7 @@ module Luchadeer
 
     def deep_structify(k, v)
       case v
-      when Hash then Luchadeer::Resource.new(v)
+      when Hash  then Luchadeer::Resource.new(v)
       when Array then v.map { |n| Luchadeer::Resource.new(n) }
       else v
       end
