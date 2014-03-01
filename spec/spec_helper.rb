@@ -5,3 +5,4 @@ require 'luchadeer'
 require 'webmock/rspec'
 
 require 'support/resource'
+require 'support/resources'
