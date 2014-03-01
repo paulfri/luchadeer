@@ -5,7 +5,7 @@ describe Luchadeer::API::Companies do
   it_behaves_like 'resources' do
     let(:name)  { :company }
     let(:klass) { Luchadeer::Company }
-    let(:path)  { %r(#{Luchadeer::Client::GIANT_BOMB}/company/3010-#{id}) }
+    let(:rid)   { 3010 }
   end
 
 end

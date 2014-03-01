@@ -1,10 +1,11 @@
 # Invoke this shared example group with three defined variables:
 # name,  the singular name of the resource, as a symbol
 # klass, the Luchadeer resource class that maps to the resource
-# path,  the API path that the method should hit (for stubbing)
+# rid,   the API resource ID that's used when constructing the path
 
 shared_examples 'resources' do
 
+  let(:path)   { %r(#{Luchadeer::Client::GIANT_BOMB}/#{name}/#{rid}-#{id}) }
   let(:client) { Luchadeer::Client.new }
 
   describe "#{name}" do
