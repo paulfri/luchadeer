@@ -1,9 +1,10 @@
 module Luchadeer
   module API
     module Companies
+      RESOURCE_ID = 3010
 
       def company(id, refresh = false)
-        fetch("company/3010-#{id}", refresh, Luchadeer::Company)
+        fetch("company/#{RESOURCE_ID}-#{id}", refresh, Luchadeer::Company)
       end
 
     end

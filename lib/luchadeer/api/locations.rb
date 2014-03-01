@@ -1,9 +1,10 @@
 module Luchadeer
   module API
     module Locations
+      RESOURCE_ID = 3035
 
       def location(id, refresh = false)
-        fetch("location/3035-#{id}", refresh, Luchadeer::Location)
+        fetch("location/#{RESOURCE_ID}-#{id}", refresh, Luchadeer::Location)
       end
 
     end

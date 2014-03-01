@@ -1,9 +1,10 @@
 module Luchadeer
   module API
     module Franchises
+      RESOURCE_ID = 3025
 
       def franchise(id, refresh = false)
-        fetch("franchise/3025-#{id}", refresh, Luchadeer::Franchise)
+        fetch("franchise/#{RESOURCE_ID}-#{id}", refresh, Luchadeer::Franchise)
       end
 
     end

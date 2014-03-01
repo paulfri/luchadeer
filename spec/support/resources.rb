@@ -1,11 +1,9 @@
-# Invoke this shared example group with three defined variables:
-# name,  the singular name of the resource, as a symbol
-# klass, the Luchadeer resource class that maps to the resource
-# rid,   the API resource ID that's used when constructing the path
+# Invoke this shared example group with two let statements passed in a block:
+# let(:name)  { ... }, the singular name of the resource, as a symbol
+# let(:klass) { ... }, the Luchadeer resource class that maps to the resource
 
 shared_examples 'resources' do
-
-  let(:path)   { %r(#{Luchadeer::Client::GIANT_BOMB}/#{name}/#{rid}-#{id}) }
+  let(:path)   { %r(#{Luchadeer::Client::GIANT_BOMB}/#{name}/#{described_class::RESOURCE_ID}-#{id}) }
   let(:client) { Luchadeer::Client.new }
 
   describe "#{name}" do

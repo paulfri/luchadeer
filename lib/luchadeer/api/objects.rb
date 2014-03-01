@@ -1,9 +1,10 @@
 module Luchadeer
   module API
     module Objects
+      RESOURCE_ID = 3055
 
       def object(id, refresh = false)
-        fetch("object/3055-#{id}", refresh, Luchadeer::Object)
+        fetch("object/#{RESOURCE_ID}-#{id}", refresh, Luchadeer::Object)
       end
 
     end
