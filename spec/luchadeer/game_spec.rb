@@ -2,9 +2,7 @@ require 'spec_helper'
 
 describe Luchadeer::Game do
 
-  it 'is a resource' do
-    expect(described_class.new).to be_a Luchadeer::Resource
-  end
+  it_behaves_like 'a resource'
 
   describe '.find' do
     let(:client) { Luchadeer::Client.new }

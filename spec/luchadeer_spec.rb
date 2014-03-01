@@ -5,18 +5,15 @@ describe Luchadeer do
 
   describe '.configure' do
     it 'returns a Luchadeer::Client' do
-      expect(described_class.configure).to be_instance_of Luchadeer::Client
+      expect(described_class.configure).to be_a Luchadeer::Client
     end
 
     it 'passes opts hash to the new client' do
-      hash = { api_key: api_key }
-
-      expect(described_class.configure(hash).api_key).to eq api_key
+      expect(described_class.configure(api_key: api_key).api_key).to eq api_key
     end
 
     it 'passes the given block to the new client' do
-      proc = Proc.new { |c| c.api_key = api_key }
-
+      proc = ->(c) { c.api_key = api_key }
       expect(described_class.configure(&proc).api_key).to eq api_key
     end
   end
