@@ -39,11 +39,16 @@ Luchadeer::Client.new(api_key: 'my_api_key')
 ## Usage
 
 ```ruby
-# Resources
-Luchadeer::Game.find(21373) # or...
+# Resources (by name)
+Luchadeer::Game.search 'persona 4'
+Luchadeer::Location.search 'inaba'
+Luchadeer::Video.search 'unprofessional'
+
+# Resources (by id)
+Luchadeer::Game.find(21373) # or ...
 my_client.game(21373) # => #<Luchadeer::Game name="Shin Megami Tensei: Persona 4" ...>
 
-# Search: mix and match whatever syntax you like
+# Custom searches
 Luchadeer::Search.new(page: 1, limit: 50, query: 'valkyria').fetch
 
 search = Luchadeer::Search.new
@@ -63,7 +68,6 @@ results = search.fetch
 
 ## TODO
 1. Add custom filtering to search (i.e., the 'filter' request parameter).
-2. Add per-resource searching class methods on each resource object.
-3. Make the caching layer more flexible - more options besides in-memory store. Add a null store, too.
-4. Add remaining missing resources: accessory, chat, game_rating, genre, platform, promo, rating_board, region, release, review, theme, types, user_review, video_type. None of these show up in search. Refactoring is probably necessary.
-5. 'ghost' object pattern - lazy-load details for partial models instead of requiring manual '.detail' invocation
+2. Make the caching layer more flexible - more options besides in-memory store. Add a null store, too.
+3. Add remaining missing resources: accessory, chat, game_rating, genre, platform, promo, rating_board, region, release, review, theme, types, user_review, video_type. None of these show up in search. Take this opportunity to improve code reuse on the resource definitions.
+4. 'ghost' object pattern - lazy-load details for partial models when they're accessed, instead of requiring manual '.detail' invocation
