@@ -1,5 +1,13 @@
 require 'spec_helper'
 
+RESOURCES = [Luchadeer::Character, Luchadeer::Company, Luchadeer::Concept,
+  Luchadeer::Franchise, Luchadeer::Game, Luchadeer::Location, Luchadeer::Object,
+  Luchadeer::Person, Luchadeer::Video]
+
+RESOURCES.each do |resource|
+  describe(resource) { it_behaves_like 'a resource' }
+end
+
 describe Luchadeer::Resource do
   let(:hash) { { first_name: 'Chie', last_name: 'Satonaka', age: 16 } }
   let(:resource) { described_class.new(hash) }
@@ -67,40 +75,4 @@ describe Luchadeer::Resource do
       end
     end
   end
-end
-
-describe Luchadeer::Character do
-  it_behaves_like 'a resource'
-end
-
-describe Luchadeer::Company do
-  it_behaves_like 'a resource'
-end
-
-describe Luchadeer::Concept do
-  it_behaves_like 'a resource'
-end
-
-describe Luchadeer::Franchise do
-  it_behaves_like 'a resource'
-end
-
-describe Luchadeer::Game do
-  it_behaves_like 'a resource'
-end
-
-describe Luchadeer::Location do
-  it_behaves_like 'a resource'
-end
-
-describe Luchadeer::Object do
-  it_behaves_like 'a resource'
-end
-
-describe Luchadeer::Person do
-  it_behaves_like 'a resource'
-end
-
-describe Luchadeer::Video do
-  it_behaves_like 'a resource'
 end
