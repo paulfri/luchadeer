@@ -1,6 +1,4 @@
-require 'luchadeer/api'
 require 'luchadeer/client'
-require 'luchadeer/error'
 require 'luchadeer/search'
 
 module Luchadeer
