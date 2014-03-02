@@ -1,7 +1,10 @@
 require 'luchadeer/resource'
 
 module Luchadeer
-  Video = Class.new(Resource)
+  Video = Class.new(Resource) do
+    const_set "SINGULAR", :video
+    const_set "PLURAL",   :videos
+  end
 
   module API
     module Videos

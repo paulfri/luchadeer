@@ -1,7 +1,10 @@
 require 'luchadeer/resource'
 
 module Luchadeer
-  Franchise = Class.new(Resource)
+  Franchise = Class.new(Resource) do
+    const_set "SINGULAR", :franchise
+    const_set "PLURAL",   :franchises
+  end
 
   module API
     module Franchises

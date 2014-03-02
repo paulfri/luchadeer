@@ -1,7 +1,10 @@
 require 'luchadeer/resource'
 
 module Luchadeer
-  Object = Class.new(Resource)
+  Object = Class.new(Resource) do
+    const_set "SINGULAR", :object
+    const_set "PLURAL",   :objects
+  end
 
   module API
     module Objects

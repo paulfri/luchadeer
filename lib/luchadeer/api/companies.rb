@@ -1,7 +1,10 @@
 require 'luchadeer/resource'
 
 module Luchadeer
-  Company = Class.new(Resource)
+  Company = Class.new(Resource) do
+    const_set "SINGULAR", :company
+    const_set "PLURAL",   :companies
+  end
 
   module API
     module Companies

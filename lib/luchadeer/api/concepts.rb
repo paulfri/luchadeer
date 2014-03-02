@@ -1,7 +1,10 @@
 require 'luchadeer/resource'
 
 module Luchadeer
-  Concept = Class.new(Resource)
+  Concept = Class.new(Resource) do
+    const_set "SINGULAR", :concept
+    const_set "PLURAL",   :concepts
+  end
 
   module API
     module Concepts
