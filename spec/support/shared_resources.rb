@@ -1,11 +1,11 @@
 # Invoke this shared example group with a let statement passed in a block:
-# let(:klass) { ... }, the Luchadeer resource class that maps to the resource
+# let(:described_class) { ... }, the Luchadeer resource class that maps to the resource
 
-shared_examples 'resources' do
+shared_examples 'a searchable resource' do
   let(:client) { Luchadeer::Client.new }
 
   describe 'find method' do
-    let(:find) { klass::SINGULAR }
+    let(:find) { described_class::SINGULAR }
     let(:id)   { 14850 }
     let(:path) { %r(#{Luchadeer::Client::GIANT_BOMB}/#{find}/#{described_class::RESOURCE_ID}-#{id}) }
 
@@ -17,7 +17,7 @@ shared_examples 'resources' do
 
     it 'returns the proper type of resource' do
       stub_request(:get, path).to_return(body: '{ "results": { "key": "value"}}')
-      expect(client.send(find, "#{id}")).to be_instance_of klass
+      expect(client.send(find, "#{id}")).to be_instance_of described_class
     end
 
     it 'caches responses' do
@@ -28,7 +28,7 @@ shared_examples 'resources' do
   end
 
   describe 'search method' do
-    let(:search) { klass::PLURAL }
+    let(:search) { described_class::PLURAL }
     let(:query) { 'chie' }
     let(:path)  { %r(#{Luchadeer::Client::GIANT_BOMB}/#{search}) }
 
@@ -52,7 +52,7 @@ shared_examples 'resources' do
 
     it 'returns the proper type of resource' do
       stub_request(:get, path).to_return(body: '{ "results": { "key": "value"}}')
-      expect(client.send(search, query)).to be_instance_of klass
+      expect(client.send(search, query)).to be_instance_of described_class
     end
 
     it 'caches responses' do

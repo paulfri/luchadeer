@@ -3,23 +3,29 @@ require 'luchadeer/api/search'
 
 module Luchadeer
   module API
-    API_MODULES = [
-      Luchadeer::API::Accessories,
-      Luchadeer::API::Characters,
-      Luchadeer::API::Companies,
-      Luchadeer::API::Concepts,
-      Luchadeer::API::Franchises,
-      Luchadeer::API::Games,
-      Luchadeer::API::Locations,
-      Luchadeer::API::Objects,
-      Luchadeer::API::People,
-      Luchadeer::API::Videos,
+    include Luchadeer::API::Search
 
-      Luchadeer::API::Search
+    RESOURCES = [
+      Luchadeer::Accessory,
+      Luchadeer::Character,
+      Luchadeer::Company,
+      Luchadeer::Concept,
+      Luchadeer::Franchise,
+      Luchadeer::Game,
+      Luchadeer::Location,
+      Luchadeer::Object,
+      Luchadeer::Person,
+      Luchadeer::Video
     ]
 
-    API_MODULES.each do |mod|
-      include mod
+    RESOURCES.each do |klass|
+      define_method klass::SINGULAR do |id, refresh = false|
+        fetch("#{klass::SINGULAR}/#{klass::RESOURCE_ID}-#{id}", refresh, klass)
+      end
+
+      define_method klass::PLURAL do |query = nil, refresh = false|
+        search_resource(klass::PLURAL, query, refresh, klass)
+      end
     end
 
     attr_writer :cache

@@ -6,6 +6,7 @@ RESOURCES = [Luchadeer::Accessory, Luchadeer::Character, Luchadeer::Company, Luc
 
 RESOURCES.each do |resource|
   describe(resource) { it_behaves_like 'a resource' } # spec/support/shared_resource.rb
+  describe(resource) { it_behaves_like 'a searchable resource' } # spec/support/shared_resources.rb
 end
 
 describe Luchadeer::Resource do
