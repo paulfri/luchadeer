@@ -25,7 +25,8 @@ module Luchadeer
       Luchadeer::Review,
       Luchadeer::Theme,
       Luchadeer::UserReview,
-      Luchadeer::Video
+      Luchadeer::Video,
+      Luchadeer::VideoType
     ]
 
     RESOURCES.each do |resource|

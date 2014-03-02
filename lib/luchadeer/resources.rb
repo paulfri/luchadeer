@@ -1,8 +1,5 @@
 require 'luchadeer/resource'
 
-# missing resources:
-# video_type, video_types, 2320
-
 module Luchadeer
   Accessory = Class.new(Resource) do
     const_set "SINGULAR",    :accessory
@@ -128,5 +125,11 @@ module Luchadeer
     const_set "SINGULAR",    :video
     const_set "PLURAL",      :videos
     const_set "RESOURCE_ID", 2300
+  end
+
+  VideoType = Class.new(Resource) do
+    const_set "SINGULAR",    :video_type
+    const_set "PLURAL",      :video_types
+    const_set "RESOURCE_ID", 2320
   end
 end
