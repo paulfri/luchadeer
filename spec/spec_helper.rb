@@ -4,5 +4,5 @@ Coveralls.wear!
 require 'luchadeer'
 require 'webmock/rspec'
 
-require 'support/resource'
-require 'support/resources'
+require 'support/shared_resource'
+require 'support/shared_resources'
