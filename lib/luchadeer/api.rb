@@ -19,6 +19,7 @@ module Luchadeer
       Luchadeer::Person,
       Luchadeer::Platform,
       Luchadeer::Promo,
+      Luchadeer::RatingBoard,
       Luchadeer::Video
     ]
 
