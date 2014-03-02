@@ -1,4 +1,4 @@
-require 'luchadeer/api/resources'
+require 'luchadeer/resources'
 
 module Luchadeer
   class Search

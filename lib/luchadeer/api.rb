@@ -1,9 +1,8 @@
-require 'luchadeer/api/resources'
-require 'luchadeer/api/search'
+require 'luchadeer/resources'
 
 module Luchadeer
   module API
-    include Luchadeer::API::Search
+    attr_writer :cache
 
     RESOURCES = [
       Luchadeer::Accessory,
@@ -28,7 +27,9 @@ module Luchadeer
       end
     end
 
-    attr_writer :cache
+    def search(*args, &blk)
+      Luchadeer::Search.new(*args, &blk).fetch
+    end
 
     def cache(key, refresh = false, &blk)
       @cache ||= {}

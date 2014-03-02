@@ -1,7 +1,6 @@
 require 'luchadeer/resource'
 
 module Luchadeer
-
   Accessory = Class.new(Resource) do
     const_set "SINGULAR",    :accessory
     const_set "PLURAL",      :accessories
@@ -61,5 +60,4 @@ module Luchadeer
     const_set "PLURAL",      :videos
     const_set "RESOURCE_ID", 2300
   end
-
 end

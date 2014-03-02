@@ -1,4 +1,5 @@
 require 'faraday'
+require 'luchadeer/version'
 require 'luchadeer/middleware/follow_redirects'
 require 'luchadeer/middleware/parse_json'
 require 'luchadeer/middleware/parse_http_error'
