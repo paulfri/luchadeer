@@ -12,6 +12,7 @@ module Luchadeer
       Luchadeer::Concept,
       Luchadeer::Franchise,
       Luchadeer::Game,
+      Luchadeer::GameRating,
       Luchadeer::Location,
       Luchadeer::Object,
       Luchadeer::Person,

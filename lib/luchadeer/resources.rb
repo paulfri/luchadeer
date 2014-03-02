@@ -1,7 +1,6 @@
 require 'luchadeer/resource'
 
 # missing resources:
-# game_rating, game_ratings, 3065
 # genre, genres, 3060
 # platform, platforms, 3045
 # promo, promos, 1700
@@ -54,6 +53,12 @@ module Luchadeer
     const_set "SINGULAR",    :game
     const_set "PLURAL",      :games
     const_set "RESOURCE_ID", 3030
+  end
+
+  GameRating = Class.new(Resource) do
+    const_set "SINGULAR",    :game_rating
+    const_set "PLURAL",      :game_ratings
+    const_set "RESOURCE_ID", 3065
   end
 
   Location = Class.new(Resource) do
