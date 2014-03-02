@@ -1,5 +1,19 @@
 require 'luchadeer/resource'
 
+# missing resources:
+# chat, chats, 2450
+# game_rating, game_ratings, 3065
+# genre, genres, 3060
+# platform, platforms, 3045
+# promo, promos, 1700
+# rating_board, rating_boards, 3070
+# region, regions, 3075
+# release, releases, 3050
+# review, reviews, 1900
+# theme, themes, 3032
+# user_review, user_reviews, 2200
+# video_type, video_types, 2320
+
 module Luchadeer
   Accessory = Class.new(Resource) do
     const_set "SINGULAR",    :accessory
