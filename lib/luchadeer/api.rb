@@ -7,6 +7,7 @@ module Luchadeer
     RESOURCES = [
       Luchadeer::Accessory,
       Luchadeer::Character,
+      Luchadeer::Chat,
       Luchadeer::Company,
       Luchadeer::Concept,
       Luchadeer::Franchise,

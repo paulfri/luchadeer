@@ -1,7 +1,6 @@
 require 'luchadeer/resource'
 
 # missing resources:
-# chat, chats, 2450
 # game_rating, game_ratings, 3065
 # genre, genres, 3060
 # platform, platforms, 3045
@@ -25,6 +24,12 @@ module Luchadeer
     const_set "SINGULAR",    :character
     const_set "PLURAL",      :characters
     const_set "RESOURCE_ID", 3005
+  end
+
+  Chat = Class.new(Resource) do
+    const_set "SINGULAR",    :chat
+    const_set "PLURAL",      :chats
+    const_set "RESOURCE_ID", 2450
   end
 
   Company = Class.new(Resource) do
