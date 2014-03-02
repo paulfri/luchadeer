@@ -1,7 +1,6 @@
 require 'luchadeer/resource'
 
 # missing resources:
-# user_review, user_reviews, 2200
 # video_type, video_types, 2320
 
 module Luchadeer
@@ -117,6 +116,12 @@ module Luchadeer
     const_set "SINGULAR",    :theme
     const_set "PLURAL",      :themes
     const_set "RESOURCE_ID", 3032
+  end
+
+  UserReview = Class.new(Resource) do
+    const_set "SINGULAR",    :user_review
+    const_set "PLURAL",      :user_reviews
+    const_set "RESOURCE_ID", 2200
   end
 
   Video = Class.new(Resource) do

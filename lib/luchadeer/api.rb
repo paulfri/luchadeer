@@ -24,6 +24,7 @@ module Luchadeer
       Luchadeer::Release,
       Luchadeer::Review,
       Luchadeer::Theme,
+      Luchadeer::UserReview,
       Luchadeer::Video
     ]
 
