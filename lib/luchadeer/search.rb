@@ -1,12 +1,4 @@
-require 'luchadeer/api/characters'
-require 'luchadeer/api/companies'
-require 'luchadeer/api/concepts'
-require 'luchadeer/api/franchises'
-require 'luchadeer/api/games'
-require 'luchadeer/api/locations'
-require 'luchadeer/api/objects'
-require 'luchadeer/api/people'
-require 'luchadeer/api/videos'
+require 'luchadeer/api/resources'
 
 module Luchadeer
   class Search

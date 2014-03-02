@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-RESOURCES = [Luchadeer::Character, Luchadeer::Company, Luchadeer::Concept,
+RESOURCES = [Luchadeer::Accessory, Luchadeer::Character, Luchadeer::Company, Luchadeer::Concept,
   Luchadeer::Franchise, Luchadeer::Game, Luchadeer::Location, Luchadeer::Object,
   Luchadeer::Person, Luchadeer::Video]
 
 RESOURCES.each do |resource|
-  describe(resource) { it_behaves_like 'a resource' }
+  describe(resource) { it_behaves_like 'a resource' } # spec/support/shared_resource.rb
 end
 
 describe Luchadeer::Resource do

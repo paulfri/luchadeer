@@ -1,18 +1,10 @@
-require 'luchadeer/api/characters'
-require 'luchadeer/api/companies'
-require 'luchadeer/api/concepts'
-require 'luchadeer/api/franchises'
-require 'luchadeer/api/games'
-require 'luchadeer/api/locations'
-require 'luchadeer/api/objects'
-require 'luchadeer/api/people'
-require 'luchadeer/api/videos'
-
+require 'luchadeer/api/resources'
 require 'luchadeer/api/search'
 
 module Luchadeer
   module API
     API_MODULES = [
+      Luchadeer::API::Accessories,
       Luchadeer::API::Characters,
       Luchadeer::API::Companies,
       Luchadeer::API::Concepts,
