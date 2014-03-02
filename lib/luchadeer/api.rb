@@ -17,13 +17,13 @@ module Luchadeer
       Luchadeer::Video
     ]
 
-    RESOURCES.each do |klass|
-      define_method klass::SINGULAR do |id, refresh = false|
-        fetch("#{klass::SINGULAR}/#{klass::RESOURCE_ID}-#{id}", refresh, klass)
+    RESOURCES.each do |resource|
+      define_method resource::SINGULAR do |id, refresh = false|
+        fetch("#{resource::SINGULAR}/#{resource::RESOURCE_ID}-#{id}", refresh, resource)
       end
 
-      define_method klass::PLURAL do |query = nil, refresh = false|
-        search_resource(klass::PLURAL, query, refresh, klass)
+      define_method resource::PLURAL do |query = nil, refresh = false|
+        search_resource(resource::PLURAL, query, refresh, resource)
       end
     end
 
