@@ -1,135 +1,135 @@
 require 'luchadeer/resource'
 
 module Luchadeer
-  Accessory = Class.new(Resource) do
-    const_set "SINGULAR",    :accessory
-    const_set "PLURAL",      :accessories
-    const_set "RESOURCE_ID", 3000
+  class Accessory < Resource
+    SINGULAR    = :accessory
+    PLURAL      = :accessories
+    RESOURCE_ID = 3000
   end
 
-  Character = Class.new(Resource) do
-    const_set "SINGULAR",    :character
-    const_set "PLURAL",      :characters
-    const_set "RESOURCE_ID", 3005
+  class Character < Resource
+    SINGULAR    = :character
+    PLURAL      = :characters
+    RESOURCE_ID = 3005
   end
 
-  Chat = Class.new(Resource) do
-    const_set "SINGULAR",    :chat
-    const_set "PLURAL",      :chats
-    const_set "RESOURCE_ID", 2450
+  class Chat < Resource
+    SINGULAR    = :chat
+    PLURAL      = :chats
+    RESOURCE_ID = 2450
   end
 
-  Company = Class.new(Resource) do
-    const_set "SINGULAR",    :company
-    const_set "PLURAL",      :companies
-    const_set "RESOURCE_ID", 3010
+  class Company < Resource
+    SINGULAR    = :company
+    PLURAL      = :companies
+    RESOURCE_ID = 3010
   end
 
-  Concept = Class.new(Resource) do
-    const_set "SINGULAR",    :concept
-    const_set "PLURAL",      :concepts
-    const_set "RESOURCE_ID", 3015
+  class Concept < Resource
+    SINGULAR    = :concept
+    PLURAL      = :concepts
+    RESOURCE_ID = 3015
   end
 
-  Franchise = Class.new(Resource) do
-    const_set "SINGULAR",    :franchise
-    const_set "PLURAL",      :franchises
-    const_set "RESOURCE_ID", 3025
+  class Franchise < Resource
+    SINGULAR    = :franchise
+    PLURAL      = :franchises
+    RESOURCE_ID = 3025
   end
 
-  Game = Class.new(Resource) do
-    const_set "SINGULAR",    :game
-    const_set "PLURAL",      :games
-    const_set "RESOURCE_ID", 3030
+  class Game < Resource
+    SINGULAR    = :game
+    PLURAL      = :games
+    RESOURCE_ID = 3030
   end
 
-  GameRating = Class.new(Resource) do
-    const_set "SINGULAR",    :game_rating
-    const_set "PLURAL",      :game_ratings
-    const_set "RESOURCE_ID", 3065
+  class GameRating < Resource
+    SINGULAR    = :game_rating
+    PLURAL      = :game_ratings
+    RESOURCE_ID = 3065
   end
 
-  Genre = Class.new(Resource) do
-    const_set "SINGULAR",    :genre
-    const_set "PLURAL",      :genres
-    const_set "RESOURCE_ID", 3060
+  class Genre < Resource
+    SINGULAR    = :genre
+    PLURAL      = :genres
+    RESOURCE_ID = 3060
   end
 
-  Location = Class.new(Resource) do
-    const_set "SINGULAR",    :location
-    const_set "PLURAL",      :locations
-    const_set "RESOURCE_ID", 3035
+  class Location < Resource
+    SINGULAR    = :location
+    PLURAL      = :locations
+    RESOURCE_ID = 3035
   end
 
-  Object = Class.new(Resource) do
-    const_set "SINGULAR",    :object
-    const_set "PLURAL",      :objects
-    const_set "RESOURCE_ID", 3055
+  class Object < Resource
+    SINGULAR    = :object
+    PLURAL      = :objects
+    RESOURCE_ID = 3055
   end
 
-  Person = Class.new(Resource) do
-    const_set "SINGULAR",    :person
-    const_set "PLURAL",      :people
-    const_set "RESOURCE_ID", 3040
+  class Person < Resource
+    SINGULAR    = :person
+    PLURAL      = :people
+    RESOURCE_ID = 3040
   end
 
-  Platform = Class.new(Resource) do
-    const_set "SINGULAR",    :platform
-    const_set "PLURAL",      :platforms
-    const_set "RESOURCE_ID", 3045
+  class Platform < Resource
+    SINGULAR    = :platform
+    PLURAL      = :platforms
+    RESOURCE_ID = 3045
   end
 
-  Promo = Class.new(Resource) do
-    const_set "SINGULAR",    :promo
-    const_set "PLURAL",      :promos
-    const_set "RESOURCE_ID", 1700
+  class Promo < Resource
+    SINGULAR    = :promo
+    PLURAL      = :promos
+    RESOURCE_ID = 1700
   end
 
-  RatingBoard = Class.new(Resource) do
-    const_set "SINGULAR",    :rating_board
-    const_set "PLURAL",      :rating_boards
-    const_set "RESOURCE_ID", 3070
+  class RatingBoard < Resource
+    SINGULAR    = :rating_board
+    PLURAL      = :rating_boards
+    RESOURCE_ID = 3070
   end
 
-  Region = Class.new(Resource) do
-    const_set "SINGULAR",    :region
-    const_set "PLURAL",      :regions
-    const_set "RESOURCE_ID", 3075
+  class Region < Resource
+    SINGULAR    = :region
+    PLURAL      = :regions
+    RESOURCE_ID = 3075
   end
 
-  Release = Class.new(Resource) do
-    const_set "SINGULAR",    :release
-    const_set "PLURAL",      :releases
-    const_set "RESOURCE_ID", 3050
+  class Release < Resource
+    SINGULAR    = :release
+    PLURAL      = :releases
+    RESOURCE_ID = 3050
   end
 
-  Review = Class.new(Resource) do
-    const_set "SINGULAR",    :review
-    const_set "PLURAL",      :reviews
-    const_set "RESOURCE_ID", 1900
+  class Review < Resource
+    SINGULAR    = :review
+    PLURAL      = :reviews
+    RESOURCE_ID = 1900
   end
 
-  Theme = Class.new(Resource) do
-    const_set "SINGULAR",    :theme
-    const_set "PLURAL",      :themes
-    const_set "RESOURCE_ID", 3032
+  class Theme < Resource
+    SINGULAR    = :theme
+    PLURAL      = :themes
+    RESOURCE_ID = 3032
   end
 
-  UserReview = Class.new(Resource) do
-    const_set "SINGULAR",    :user_review
-    const_set "PLURAL",      :user_reviews
-    const_set "RESOURCE_ID", 2200
+  class UserReview < Resource
+    SINGULAR    = :user_review
+    PLURAL      = :user_reviews
+    RESOURCE_ID = 2200
   end
 
-  Video = Class.new(Resource) do
-    const_set "SINGULAR",    :video
-    const_set "PLURAL",      :videos
-    const_set "RESOURCE_ID", 2300
+  class Video < Resource
+    SINGULAR    = :video
+    PLURAL      = :videos
+    RESOURCE_ID = 2300
   end
 
-  VideoType = Class.new(Resource) do
-    const_set "SINGULAR",    :video_type
-    const_set "PLURAL",      :video_types
-    const_set "RESOURCE_ID", 2320
+  class VideoType < Resource
+    SINGULAR    = :video_type
+    PLURAL      = :video_types
+    RESOURCE_ID = 2320
   end
 end
