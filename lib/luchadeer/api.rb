@@ -20,6 +20,7 @@ module Luchadeer
       Luchadeer::Platform,
       Luchadeer::Promo,
       Luchadeer::RatingBoard,
+      Luchadeer::Region,
       Luchadeer::Video
     ]
 
