@@ -1,4 +1,6 @@
-shared_examples 'a resource' do |name|
+shared_examples 'a resource' do
+  let(:cname) { described_class.to_s }
+  let(:name)  { cname[(cname.rindex('::')+2)..-1].downcase }
 
   it 'is a Luchadeer::Resource' do
     expect(described_class.new).to be_a Luchadeer::Resource
