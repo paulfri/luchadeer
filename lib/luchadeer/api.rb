@@ -23,6 +23,7 @@ module Luchadeer
       Luchadeer::Region,
       Luchadeer::Release,
       Luchadeer::Review,
+      Luchadeer::Theme,
       Luchadeer::Video
     ]
 
