@@ -60,8 +60,8 @@ module Luchadeer
 
     def request(method, path, params = {})
       connection.send(method.to_sym, path, params.merge(default_params))
-    # rescue => e
-    #   raise Luchadeer::Error.new(e)
+    rescue Faraday::Error => e
+      raise Luchadeer::Error.new e
     end
 
     def default_params

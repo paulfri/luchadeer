@@ -49,6 +49,11 @@ describe Luchadeer::Client do
       client.get("http://laika.io")
       expect(stub).to have_been_requested
     end
+
+    it 'catches and reraises Faraday errors' do
+      allow(client).to receive(:connection).and_raise Faraday::Error
+      expect { client.get('path') }.to raise_error Luchadeer::Error
+    end
   end
 
 end
