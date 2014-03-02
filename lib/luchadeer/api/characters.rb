@@ -1,4 +1,8 @@
+require 'luchadeer/resource'
+
 module Luchadeer
+  Character = Class.new(Resource)
+
   module API
     module Characters
       RESOURCE_ID = 3005

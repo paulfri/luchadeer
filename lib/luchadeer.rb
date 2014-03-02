@@ -5,7 +5,6 @@ require 'luchadeer/client'
 require 'luchadeer/error'
 require 'luchadeer/search'
 
-require 'luchadeer/character'
 require 'luchadeer/company'
 require 'luchadeer/concept'
 require 'luchadeer/franchise'

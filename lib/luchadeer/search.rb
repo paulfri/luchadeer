@@ -1,4 +1,4 @@
-require 'luchadeer/character'
+require 'luchadeer/api/characters'
 require 'luchadeer/company'
 require 'luchadeer/concept'
 require 'luchadeer/franchise'

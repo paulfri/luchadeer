@@ -2,6 +2,10 @@ module Luchadeer
   class Resource < OpenStruct
 
     class << self
+      def find(id, refresh = false)
+        Luchadeer.client.send(to_s[(to_s.rindex('::')+2)..-1].downcase.to_sym, id, refresh)
+      end
+
       def search(query)
         Luchadeer.client.search do |s|
           s.query(query)
