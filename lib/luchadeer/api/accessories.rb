@@ -15,8 +15,7 @@ module Luchadeer
       end
 
       def accessories(query = nil, refresh = false)
-        query = "?filter=name:#{query}" unless query.nil? or query.length < 1
-        fetch("accessories#{query}", refresh, Luchadeer::Accessory)
+        search_resource('accessories', query, refresh, Luchadeer::Accessory)
       end
 
     end

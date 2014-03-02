@@ -43,5 +43,10 @@ module Luchadeer
       results.is_a?(Array) ? results.map { |r| klass.new(r) } : klass.new(results)
     end
 
+    def search_resource(endpoint, query, refresh = false, klass = Luchadeer::Resource)
+      query_string = "?filter=name:#{query}" unless query.nil? or query.length < 1
+      fetch("#{endpoint}#{query_string}", refresh, klass)
+    end
+
   end
 end
