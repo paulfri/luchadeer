@@ -35,7 +35,8 @@ module Luchadeer
       end
 
       define_method resource::LIST do |query = nil, refresh = false|
-        search_resource(resource::LIST, query, refresh, resource)
+        query_string = "?filter=name:#{query}" unless query.nil? or query.length < 1
+        fetch("#{resource::LIST}#{query_string}", refresh, resource)
       end
     end
 
@@ -56,11 +57,6 @@ module Luchadeer
       end
 
       results.is_a?(Array) ? results.map { |r| klass.new(r) } : klass.new(results)
-    end
-
-    def search_resource(endpoint, query, refresh = false, klass = Luchadeer::Resource)
-      query_string = "?filter=name:#{query}" unless query.nil? or query.length < 1
-      fetch("#{endpoint}#{query_string}", refresh, klass)
     end
 
   end
