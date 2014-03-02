@@ -5,9 +5,9 @@ shared_examples 'a searchable resource' do
   let(:client) { Luchadeer::Client.new }
 
   describe 'find method' do
-    let(:find) { described_class::SINGULAR }
+    let(:find) { described_class::DETAIL }
     let(:id)   { 14850 }
-    let(:path) { %r(#{Luchadeer::Client::GIANT_BOMB}/#{find}/#{described_class::RESOURCE_ID}-#{id}) }
+    let(:path) { %r(#{Luchadeer::Client::GIANT_BOMB}/#{find}/#{described_class::ID}-#{id}) }
 
     it 'requests the right url' do
       stub = stub_request(:get, path).to_return(body: '{ }')
@@ -28,7 +28,7 @@ shared_examples 'a searchable resource' do
   end
 
   describe 'search method' do
-    let(:search) { described_class::PLURAL }
+    let(:search) { described_class::LIST }
     let(:query) { 'chie' }
     let(:path)  { %r(#{Luchadeer::Client::GIANT_BOMB}/#{search}) }
 

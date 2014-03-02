@@ -30,12 +30,12 @@ module Luchadeer
     ]
 
     RESOURCES.each do |resource|
-      define_method resource::SINGULAR do |id, refresh = false|
-        fetch("#{resource::SINGULAR}/#{resource::RESOURCE_ID}-#{id}", refresh, resource)
+      define_method resource::DETAIL do |id, refresh = false|
+        fetch("#{resource::DETAIL}/#{resource::ID}-#{id}", refresh, resource)
       end
 
-      define_method resource::PLURAL do |query = nil, refresh = false|
-        search_resource(resource::PLURAL, query, refresh, resource)
+      define_method resource::LIST do |query = nil, refresh = false|
+        search_resource(resource::LIST, query, refresh, resource)
       end
     end
 

@@ -5,11 +5,11 @@ module Luchadeer
 
     class << self
       def find(id, refresh = false)
-        Luchadeer.client.send(self::SINGULAR, id, refresh)
+        Luchadeer.client.send(self::DETAIL, id, refresh)
       end
 
       def search(query = nil, refresh = false)
-        Luchadeer.client.send(self::PLURAL, query, refresh)
+        Luchadeer.client.send(self::LIST, query, refresh)
       end
     end
 
