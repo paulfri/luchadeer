@@ -11,11 +11,14 @@
 The bombingest Giant Bomb API client library for Ruby.
 
 ## Features
-1. Fully unit-tested.
+1. Supports all resources exposed by the Giant Bomb API. For a full list, see the [documentation][docs].
 2. Caches API responses.
-3. fully.recursive.dot.syntax, no random hash[:syntax] cutoff point
-4. Fetch full details for partial objects (e.g. embedded results) with object.detail.
-5. Thread-ready (thready?): no global or class state. Use convenience methods to use a default client per-thread, or use an alternate syntax for full control.
+3. Fully unit-tested.
+4. fully.recursive.dot.syntax, no random hash[:syntax] cutoff point
+5. Fetch full details for partial objects (e.g. embedded results) with object.detail.
+6. Use convenience methods on a default client per-thread, or use an alternate syntax for full control of the client object.
+
+[docs]: http://www.giantbomb.com/api/documentation
 
 ## Configuration
 Get your API key [here](http://www.giantbomb.com/api). If you have a premium account, your API key should give you access to subscriber-only video resources, as well as links to HD-quality videos.
@@ -25,22 +28,21 @@ Luchadeer.configure(api_key: 'my_api_key') # default client for this thread
 Luchadeer::Client.new(api_key: 'my_api_key')
 ```
 
-## Supported resources
-All Giant Bomb API resources are supported. For a full list, see the [Giant Bomb API documentation][docs].
-
-[docs]: http://www.giantbomb.com/api/documentation
-
 ## Usage
 
 ```ruby
-# Resources (by name)
+# Resources by name
+# (you can omit the search query if you like)
 Luchadeer::Game.search 'persona 4'
-Luchadeer::Location.search 'inaba'
+my_client.games 'persona 4'
 Luchadeer::Video.search 'unprofessional'
+my_client.videos 'unprofessional'
 
-# Resources (by id)
-Luchadeer::Game.find(21373) # or ...
-my_client.game(21373) # => #<Luchadeer::Game name="Shin Megami Tensei: Persona 4" ...>
+# Resources by ID
+Luchadeer::Game.find 21373
+my_client.game 21373
+Luchadeer::RatingBoard.find 3
+my_client.rating_board 3
 
 # Custom searches
 Luchadeer::Search.new(page: 1, limit: 50, query: 'valkyria').fetch
