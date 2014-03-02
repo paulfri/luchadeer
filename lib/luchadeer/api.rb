@@ -21,6 +21,7 @@ module Luchadeer
       Luchadeer::Promo,
       Luchadeer::RatingBoard,
       Luchadeer::Region,
+      Luchadeer::Release,
       Luchadeer::Video
     ]
 
