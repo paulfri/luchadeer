@@ -1,16 +1,15 @@
+require 'ostruct'
+
 module Luchadeer
-  class Resource < OpenStruct
+  class Resource < ::OpenStruct
 
     class << self
       def find(id, refresh = false)
-        Luchadeer.client.send(to_s[(to_s.rindex('::')+2)..-1].downcase.to_sym, id, refresh)
+        Luchadeer.client.send(self::SINGULAR, id, refresh)
       end
 
-      def search(query)
-        Luchadeer.client.search do |s|
-          s.query(query)
-          s.resources(self)
-        end
+      def search(query = nil, refresh = false)
+        Luchadeer.client.send(self::PLURAL, query, refresh)
       end
     end
 

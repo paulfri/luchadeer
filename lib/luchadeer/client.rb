@@ -45,8 +45,7 @@ module Luchadeer
     end
 
     def middleware
-      Faraday::RackBuilder.new do |builder|
-        # order is important
+      Faraday::RackBuilder.new do |builder| # order is important
         builder.response :parse_api_error
         builder.response :parse_json
         builder.response :parse_http_error
