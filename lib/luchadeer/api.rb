@@ -17,6 +17,7 @@ module Luchadeer
       Luchadeer::Location,
       Luchadeer::Object,
       Luchadeer::Person,
+      Luchadeer::Platform,
       Luchadeer::Video
     ]
 

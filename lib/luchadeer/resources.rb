@@ -1,7 +1,6 @@
 require 'luchadeer/resource'
 
 # missing resources:
-# platform, platforms, 3045
 # promo, promos, 1700
 # rating_board, rating_boards, 3070
 # region, regions, 3075
@@ -82,6 +81,12 @@ module Luchadeer
     const_set "SINGULAR",    :person
     const_set "PLURAL",      :people
     const_set "RESOURCE_ID", 3040
+  end
+
+  Platform = Class.new(Resource) do
+    const_set "SINGULAR",    :platform
+    const_set "PLURAL",      :platforms
+    const_set "RESOURCE_ID", 3045
   end
 
   Video = Class.new(Resource) do
