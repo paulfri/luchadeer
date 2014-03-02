@@ -1,4 +1,8 @@
+require 'luchadeer/resource'
+
 module Luchadeer
+  Franchise = Class.new(Resource)
+
   module API
     module Franchises
       RESOURCE_ID = 3025

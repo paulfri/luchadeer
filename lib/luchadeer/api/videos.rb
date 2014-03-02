@@ -1,4 +1,8 @@
+require 'luchadeer/resource'
+
 module Luchadeer
+  Video = Class.new(Resource)
+
   module API
     module Videos
       RESOURCE_ID = 2300

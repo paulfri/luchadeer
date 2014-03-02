@@ -1,4 +1,8 @@
+require 'luchadeer/resource'
+
 module Luchadeer
+  Location = Class.new(Resource)
+
   module API
     module Locations
       RESOURCE_ID = 3035

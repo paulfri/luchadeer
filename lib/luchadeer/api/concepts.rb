@@ -1,4 +1,8 @@
+require 'luchadeer/resource'
+
 module Luchadeer
+  Concept = Class.new(Resource)
+
   module API
     module Concepts
       RESOURCE_ID = 3015

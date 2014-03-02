@@ -1,4 +1,8 @@
+require 'luchadeer/resource'
+
 module Luchadeer
+  Game = Class.new(Resource)
+
   module API
     module Games
       RESOURCE_ID = 3030
