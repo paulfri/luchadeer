@@ -16,5 +16,9 @@ module Luchadeer
     def client=(new_client)
       Thread.current[:luchadeer_client] = new_client
     end
+
+    def search(*args, &blk)
+      Luchadeer::Search.new(*args, &blk).fetch
+    end
   end
 end

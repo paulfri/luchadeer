@@ -148,7 +148,7 @@ describe Luchadeer::Search do
       end
 
       it 'omits nil parameters' do
-        stub = stub_request(:get, "http://www.giantbomb.com/api/search")
+        stub = stub_request(:get, 'http://www.giantbomb.com/api/search')
           .with(query: { api_key: nil, format: 'json', query: query })
           .to_return(empty_body)
 

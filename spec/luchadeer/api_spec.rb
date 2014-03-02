@@ -5,7 +5,11 @@ describe Luchadeer::API do
   let(:key) { 'Chie' }
   let(:val) { 'Tomoe Gozen' }
 
-  describe  '#cache' do
+  it 'defines RESOURCES' do
+    expect(described_class).to be_const_defined :RESOURCES
+  end
+
+  describe '#cache' do
     context 'when value exists for key' do
       it 'returns the value for the given key' do
         client.cache = { key => val }
@@ -89,9 +93,7 @@ describe Luchadeer::API do
 
       context 'with no results' do
         it 'returns nil' do
-          stub_request(:get, %r(http://www.giantbomb.com/api/game-3030/21373))
-            .to_return(body:'{ }')
-
+          stub_request(:get, %r(http://www.giantbomb.com/api/game-3030/21373)).to_return(body:'{ }')
           expect(client.fetch('game-3030/21373')).to be_nil
         end
       end

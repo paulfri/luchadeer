@@ -39,10 +39,6 @@ module Luchadeer
       end
     end
 
-    def search(*args, &blk)
-      Luchadeer::Search.new(*args, &blk).fetch
-    end
-
     def cache(key, refresh = false, &blk)
       @cache ||= {}
       @cache.delete(key) if refresh

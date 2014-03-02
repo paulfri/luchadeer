@@ -46,21 +46,19 @@ my_client.game 21373
 Luchadeer::RatingBoard.find 3
 my_client.rating_board 3
 
-# Custom searches
-Luchadeer::Search.new(page: 1, limit: 50, query: 'valkyria').fetch
+# Custom searches (some random examples, mix and match as you like)
+Luchadeer.search(page: 1, limit: 50, query: 'valkyria')
 
-search = Luchadeer::Search.new
-search.page(1).limit(50).sort('name', :desc) # default is :asc
-search.resources [Luchadeer::Game, Luchadeer::Character] # strings work too
-search.query 'valkyria'
-search.fetch
-
-search = Luchadeer::Search.new do |s|
+Luchadeer.search do |s|
   s.query = 'valkyria'
   s.page = 1
   s.limit = 50
 end
 
+search = Luchadeer::Search.new
+search.page(1).limit(50).sort('name', :desc) # default is :asc
+search.resources [Luchadeer::Game, Luchadeer::Character] # strings work too
+search.query 'valkyria'
 results = search.fetch
 ```
 
