@@ -18,6 +18,7 @@ module Luchadeer
       Luchadeer::Object,
       Luchadeer::Person,
       Luchadeer::Platform,
+      Luchadeer::Promo,
       Luchadeer::Video
     ]
 
