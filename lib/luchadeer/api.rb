@@ -22,6 +22,7 @@ module Luchadeer
       Luchadeer::RatingBoard,
       Luchadeer::Region,
       Luchadeer::Release,
+      Luchadeer::Review,
       Luchadeer::Video
     ]
 
