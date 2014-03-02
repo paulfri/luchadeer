@@ -1,28 +1,64 @@
-# Invoke this shared example group with two let statements passed in a block:
-# let(:name)  { ... }, the singular name of the resource, as a symbol
+# Invoke this shared example group with a let statement passed in a block:
 # let(:klass) { ... }, the Luchadeer resource class that maps to the resource
 
 shared_examples 'resources' do
-  let(:id)     { 14850 }
-  let(:path)   { %r(#{Luchadeer::Client::GIANT_BOMB}/#{name}/#{described_class::RESOURCE_ID}-#{id}) }
   let(:client) { Luchadeer::Client.new }
 
-  describe "#{name}" do
+  describe 'find method' do
+    let(:find) { klass::SINGULAR }
+    let(:id)   { 14850 }
+    let(:path) { %r(#{Luchadeer::Client::GIANT_BOMB}/#{find}/#{described_class::RESOURCE_ID}-#{id}) }
+
     it 'requests the right url' do
       stub = stub_request(:get, path).to_return(body: '{ }')
-      client.send(name, "#{id}")
+      client.send(find, "#{id}")
       expect(stub).to have_been_requested
     end
 
-    it "returns the proper resource" do
+    it 'returns the proper type of resource' do
       stub_request(:get, path).to_return(body: '{ "results": { "key": "value"}}')
-      expect(client.send(name, "#{id}")).to be_instance_of klass
+      expect(client.send(find, "#{id}")).to be_instance_of klass
     end
 
     it 'caches responses' do
       stub_request(:get, path).to_return(body: '{ }')
       expect(client).to receive :cache
-      client.send(name, "#{id}")
+      client.send(find, "#{id}")
+    end
+  end
+
+  describe 'search method' do
+    let(:search) { klass::PLURAL }
+    let(:query) { 'chie' }
+    let(:path)  { %r(#{Luchadeer::Client::GIANT_BOMB}/#{search}) }
+
+    context 'when invoked with a query' do
+      it 'requests the right url' do
+        stub = stub_request(:get, path)
+          .with(query: hash_including(filter: "name:#{query}"))
+          .to_return(body: '{ }')
+        client.send(search, query)
+        expect(stub).to have_been_requested
+      end
+    end
+
+    context 'when invoked without a query' do
+      it 'requests the right url' do
+        stub = stub_request(:get, path).to_return(body: '{ }')
+        client.send(search)
+        expect(stub).to have_been_requested
+      end
+    end
+
+    it 'returns the proper type of resource' do
+      stub_request(:get, path).to_return(body: '{ "results": { "key": "value"}}')
+      expect(client.send(search, query)).to be_instance_of klass
+    end
+
+    it 'caches responses' do
+      stub_request(:get, path).to_return(body: '{ }')
+      expect(client).to receive :cache
+      client.send(search, query)
     end
   end
 
