@@ -5,4 +5,4 @@ require 'luchadeer'
 require 'webmock/rspec'
 
 require 'support/shared_resource'
-require 'support/shared_resources'
+require 'support/shared_searchable'
