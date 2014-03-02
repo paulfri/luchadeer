@@ -40,7 +40,7 @@ module Luchadeer
       end
     end
 
-    def cache(key, refresh = false, &blk)
+    def cache(key, refresh = false)
       @cache ||= {}
       @cache.delete(key) if refresh
 
