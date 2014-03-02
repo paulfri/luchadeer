@@ -14,6 +14,10 @@ module Luchadeer
         fetch("location/#{RESOURCE_ID}-#{id}", refresh, Luchadeer::Location)
       end
 
+      def locations(query = nil, refresh = false)
+        search_resource('locations', query, refresh, Luchadeer::Location)
+      end
+
     end
   end
 end

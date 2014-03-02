@@ -14,6 +14,10 @@ module Luchadeer
         fetch("video/#{RESOURCE_ID}-#{id}", refresh, Luchadeer::Video)
       end
 
+      def videos(query = nil, refresh = false)
+        search_resource('videos', query, refresh, Luchadeer::Video)
+      end
+
     end
   end
 end

@@ -14,6 +14,10 @@ module Luchadeer
         fetch("company/#{RESOURCE_ID}-#{id}", refresh, Luchadeer::Company)
       end
 
+      def companies(query = nil, refresh = false)
+        search_resource('companies', query, refresh, Luchadeer::Company)
+      end
+
     end
   end
 end

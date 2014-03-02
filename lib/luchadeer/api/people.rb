@@ -14,6 +14,10 @@ module Luchadeer
         fetch("person/#{RESOURCE_ID}-#{id}", refresh, Luchadeer::Person)
       end
 
+      def people(query = nil, refresh = false)
+        search_resource('people', query, refresh, Luchadeer::Person)
+      end
+
     end
   end
 end

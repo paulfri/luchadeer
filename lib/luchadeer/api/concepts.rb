@@ -14,6 +14,10 @@ module Luchadeer
         fetch("concept/#{RESOURCE_ID}-#{id}", refresh, Luchadeer::Concept)
       end
 
+      def concepts(query = nil, refresh = false)
+        search_resource('concepts', query, refresh, Luchadeer::Concept)
+      end
+
     end
   end
 end

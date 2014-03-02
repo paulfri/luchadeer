@@ -14,6 +14,10 @@ module Luchadeer
         fetch("character/#{RESOURCE_ID}-#{id}", refresh, Luchadeer::Character)
       end
 
+      def characters(query = nil, refresh = false)
+        search_resource('characters', query, refresh, Luchadeer::Character)
+      end
+
     end
   end
 end

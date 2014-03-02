@@ -14,6 +14,10 @@ module Luchadeer
         fetch("game/#{RESOURCE_ID}-#{id}", refresh, Luchadeer::Game)
       end
 
+      def games(query = nil, refresh = false)
+        search_resource('games', query, refresh, Luchadeer::Game)
+      end
+
     end
   end
 end
