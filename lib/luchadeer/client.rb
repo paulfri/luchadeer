@@ -9,10 +9,11 @@ require 'luchadeer/middleware/parse_api_error'
 
 module Luchadeer
   class Client
+    GIANT_BOMB = 'http://www.giantbomb.com/api'
+
     include Luchadeer::API
 
     attr_accessor :api_key
-    GIANT_BOMB = 'http://www.giantbomb.com/api'
 
     def initialize(opts = {})
       @api_key = opts[:api_key] if opts[:api_key]
@@ -34,28 +35,18 @@ module Luchadeer
   private
 
     def connection
-      @_connection ||= Faraday.new(GIANT_BOMB, connection_options)
-    end
+      @_connection ||= Faraday.new(GIANT_BOMB, headers: headers) do |f|
+        f.response :parse_api_error
+        f.response :parse_json
+        f.response :parse_http_error
+        f.response :follow_redirects
 
-    def connection_options
-      {
-        builder: middleware,
-        headers: {
-          accept: 'application/json',
-          user_agent: user_agent,
-        }
-      }
-    end
-
-    def middleware
-      Faraday::RackBuilder.new do |builder| # order is important
-        builder.response :parse_api_error
-        builder.response :parse_json
-        builder.response :parse_http_error
-        builder.response :follow_redirects
-
-        builder.adapter  :net_http
+        f.adapter  :net_http
       end
+    end
+
+    def headers
+      { accept: 'application/json', user_agent: user_agent }
     end
 
     def request(method, path, params = {})
