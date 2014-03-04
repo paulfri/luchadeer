@@ -21,7 +21,7 @@ module Luchadeer
           if follow_redirect?(env, response)
             raise Luchadeer::Error::RedirectLimitReached, response if follows.zero?
 
-            env      = update_env(env, request_body, response)
+            env = update_env(env, request_body, response)
             response = follow_redirect(env, follows - 1)
           end
         end
