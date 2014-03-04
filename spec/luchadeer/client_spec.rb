@@ -10,22 +10,6 @@ describe Luchadeer::Client do
     end
   end
 
-  describe '#api_key?' do
-    context 'when API key is present' do
-      it 'returns true' do
-        client.api_key = 'key'
-        expect(client.api_key?).to be_true
-      end
-    end
-
-    context 'when API key is not present' do
-      it 'returns false' do
-        client.api_key = ''
-        expect(client.api_key?).to be_false
-      end
-    end
-  end
-
   describe '#get' do
     let(:url) { %r(http://laika.io) }
     let(:empty_body) { '{ }' }

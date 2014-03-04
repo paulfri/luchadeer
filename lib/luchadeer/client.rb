@@ -20,10 +20,6 @@ module Luchadeer
       yield self if block_given?
     end
 
-    def api_key?
-      not (api_key.nil? || api_key == '')
-    end
-
     def get(path, params = {})
       request(:get, path, params)
     end
