@@ -20,10 +20,6 @@ module Luchadeer
       yield self if block_given?
     end
 
-    def user_agent
-      "Luchadeer #{Luchadeer::VERSION}"
-    end
-
     def api_key?
       not (api_key.nil? || api_key == '')
     end
@@ -46,7 +42,7 @@ module Luchadeer
     end
 
     def headers
-      { accept: 'application/json', user_agent: user_agent }
+      { accept: 'application/json', user_agent: "Luchadeer v#{Luchadeer::VERSION}" }
     end
 
     def request(method, path, params = {})

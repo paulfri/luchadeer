@@ -10,12 +10,6 @@ describe Luchadeer::Client do
     end
   end
 
-  describe '#user_agent' do
-    it 'identifies the library' do
-      expect(client.user_agent).to eq "Luchadeer #{Luchadeer::VERSION}"
-    end
-  end
-
   describe '#api_key?' do
     context 'when API key is present' do
       it 'returns true' do
@@ -34,9 +28,10 @@ describe Luchadeer::Client do
 
   describe '#get' do
     let(:url) { %r(http://laika.io) }
+    let(:empty_body) { '{ }' }
 
     it 'makes a GET request' do
-      stub = stub_request(:get, url).to_return(body: '{ "asdf": "asdf" }')
+      stub = stub_request(:get, url).to_return(body: empty_body)
       client.get("http://laika.io")
 
       expect(stub).to have_been_requested
@@ -44,7 +39,7 @@ describe Luchadeer::Client do
 
     it 'adds default parameters' do
       stub = stub_request(:get, url).with(format: 'json', api_key: api_key)
-        .to_return(body: '{ "asdf": "asdf" }')
+        .to_return(body: empty_body)
 
       client.get("http://laika.io")
       expect(stub).to have_been_requested
@@ -53,6 +48,25 @@ describe Luchadeer::Client do
     it 'catches and reraises Faraday errors' do
       allow(client).to receive(:connection).and_raise Faraday::Error
       expect { client.get('path') }.to raise_error Luchadeer::Error
+    end
+  end
+
+  describe '#connection' do
+    describe 'user agent header' do
+      it 'identifies the library' do
+        expect(client.send(:connection).headers[:user_agent]).to eq "Luchadeer v#{Luchadeer::VERSION}"
+      end
+    end
+
+    describe 'middleware stack' do
+      it 'includes all custom middleware and the Net::HTTP adapter' do
+        expect(client.send(:connection).builder.handlers).to include \
+          Luchadeer::Middleware::ParseAPIError,
+          Luchadeer::Middleware::ParseJSON,
+          Luchadeer::Middleware::ParseHTTPError,
+          Luchadeer::Middleware::FollowRedirects,
+          Faraday::Adapter::NetHttp
+      end
     end
   end
 
