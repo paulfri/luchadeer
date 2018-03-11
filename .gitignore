@@ -12,6 +12,7 @@ test/tmp
 test/version_tmp
 tmp
 .DS_Store
+Gemfile.lock
 
 # YARD artifacts
 .yardoc
