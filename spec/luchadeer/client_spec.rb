@@ -22,7 +22,8 @@ describe Luchadeer::Client do
     end
 
     it 'adds default parameters' do
-      stub = stub_request(:get, url).with(format: 'json', api_key: api_key)
+      stub = stub_request(:get, url)
+        .with(query: { format: 'json', api_key: api_key })
         .to_return(body: empty_body)
 
       client.get("http://laika.io")

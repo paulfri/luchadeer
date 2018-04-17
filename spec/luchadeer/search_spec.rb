@@ -174,15 +174,15 @@ describe Luchadeer::Search do
         search
       end
 
-      its([0]) { should be_instance_of Luchadeer::Character }
-      its([1]) { should be_instance_of Luchadeer::Company }
-      its([2]) { should be_instance_of Luchadeer::Concept }
-      its([3]) { should be_instance_of Luchadeer::Franchise }
-      its([4]) { should be_instance_of Luchadeer::Game }
-      its([5]) { should be_instance_of Luchadeer::Location }
-      its([6]) { should be_instance_of Luchadeer::Object }
-      its([7]) { should be_instance_of Luchadeer::Person }
-      its([8]) { should be_instance_of Luchadeer::Video }
+      it { expect(subject[0]).to be_instance_of Luchadeer::Character }
+      it { expect(subject[1]).to be_instance_of Luchadeer::Company }
+      it { expect(subject[2]).to be_instance_of Luchadeer::Concept }
+      it { expect(subject[3]).to be_instance_of Luchadeer::Franchise }
+      it { expect(subject[4]).to be_instance_of Luchadeer::Game }
+      it { expect(subject[5]).to be_instance_of Luchadeer::Location }
+      it { expect(subject[6]).to be_instance_of Luchadeer::Object }
+      it { expect(subject[7]).to be_instance_of Luchadeer::Person }
+      it { expect(subject[8]).to be_instance_of Luchadeer::Video }
     end
 
     context 'when the resource type isn\'t mapped' do

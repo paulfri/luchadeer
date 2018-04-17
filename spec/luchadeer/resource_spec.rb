@@ -55,7 +55,7 @@ describe Luchadeer::Resource do
 
       it 'fetches details and returns the new object' do
         stub_request(:get, %r(#{url})).to_return(body: '{ "results": { "detailed?": true } }')
-        expect(resource.detail.detailed?).to be_true
+        expect(resource.detail.detailed?).to be true
       end
     end
 
